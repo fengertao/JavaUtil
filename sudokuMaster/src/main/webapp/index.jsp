@@ -2,7 +2,7 @@
 <body>
 <h2>Sudoku Master Welcome You. please click <a href="http://127.0.0.1:8080/sudokuMaster/input.jsp">here</a> to start the game!</h2>
 <h3>
-<pre>
+<textarea rows="70" cols="160">
 This project build with maven3 + tomcat7.
 
 Run this project:
@@ -12,7 +12,6 @@ Run this project:
 	input your matrix and click "start"
 	
 Build preparation:
-<textarea rows="45" cols="160">
 (1) import into project into eclipse as a maven project.
 	make sure m2eclipse and m2e-wtp plugin are installed. elsewise there will be issue during import web project.
 	
@@ -56,12 +55,11 @@ Build preparation:
 			</plugin>
 		</plugins>
 	</build>
-	</textarea>
 
 Pending issue:
 (1) j2ee-api.jar will lead to jsf class not found issue.
 
-</pre>
+	</textarea>
 
 
 </h3>
