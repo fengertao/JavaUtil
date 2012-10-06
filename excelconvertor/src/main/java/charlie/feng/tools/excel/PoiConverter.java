@@ -22,21 +22,26 @@ import charlie.feng.tools.excel.dom.DenormRow;
 public class PoiConverter {
 	public static String SRC_PATH = null;
 	public static String TGT_PATH = null;
+	//although the start year is 1980, but most data start from 1984, especially FDI
 	public static int START_YEAR = 1980;
-	public static int END_YEAR = 2009;
-	public static int FDI_START_YEAR = 1984;
-	public static int FDI_START_COLUMN = 6;
-	public static int GDPS_START_COLUMN = 33;
-	public static int GDPD_START_COLUMN = 64;
-	public static int SKILLD_START_COLUMN = 96;
-	public static int NET_START_COLUMN = 127;
+	public static int END_YEAR = 2010;
+	public static int FDI_START_COLUMN = 7;
+	public static int GDPS_START_COLUMN = 45;
+	public static int GDPD_START_COLUMN = 83;
+	public static int SKILLD_START_COLUMN = 122;
+	public static int NET_START_COLUMN = 160;
+	public static int NET2_START_COLUMN = NET_START_COLUMN + 5 * 3; //5 column/decade * 3 decade
 	public static int EM_START_YEAR = 1995;
-	public static int EM_START_COLUMN = 152;
-	public static int LIFED_START_YEAR = 1980;
-	public static int LIFED_START_COLUMN = 169;
-	public static int LIFE_START_YEAR = 1980;
-	public static int LIFE_START_COLUMN = 200;
+	public static int EM_START_COLUMN = 194;	//column name EM_1995, for oversea chinese database
+	public static int LIFED_START_COLUMN = 218;
+	public static int LIFE_START_COLUMN = 256;
+	public static int NET3_START_COLUMN = 308;
 
+	public static int DISTANCE_COLUMN = 180;
+	public static int LANG_COLUMN = -1;		//Todo, lang is not used in china
+	
+	
+	
 	public static void main(String[] args) throws Exception {
 		System.out.println(charlie.feng.tools.excel.PoiConverter.class.getClassLoader().getResource("."));
 		Properties prop = new Properties();
@@ -93,7 +98,6 @@ public class PoiConverter {
 		row.createCell(1).setCellValue("Filter1");
 		Cell filter2 = row.createCell(2);
 		filter2.setCellValue("Filter2");
-//		filter2.
 		row.createCell(3).setCellValue("Filter3");
 		row.createCell(4).setCellValue("Country_En");
 		row.createCell(5).setCellValue("Country_Zh");
@@ -116,6 +120,7 @@ public class PoiConverter {
 		row.createCell(22).setCellValue("EM_Flow");
 		row.createCell(23).setCellValue("Lifed");
 		row.createCell(24).setCellValue("Life");
+		row.createCell(25).setCellValue("Net3");
 	}
 
 	public void generateDenormRow(Row row, DenormRow denormRow) {
@@ -141,10 +146,11 @@ public class PoiConverter {
 		setCell(row.createCell(19), denormRow.Net2);
 		setCell(row.createCell(20), denormRow.parent.dist);
 		// setCell(row.createCell(21), denormRow.parent.lang);
-		setCell(row.createCell(21), "No");
+		setCell(row.createCell(21), "Not Implemented in China");
 		setCell(row.createCell(22), denormRow.EM_Flow);
 		setCell(row.createCell(23), denormRow.LifeD);
 		setCell(row.createCell(24), denormRow.Life);
+		setCell(row.createCell(25), denormRow.Net3);
 	}
 
 	private void setCell(Cell cell, Object value) {
@@ -191,27 +197,24 @@ public class PoiConverter {
 				country.filter3 = getCellValue(row.getCell(3));
 				country.country_Zh = row.getCell(4).getStringCellValue();
 				country.country_En = row.getCell(5).getStringCellValue();
-				country.dist = getCellValue(row.getCell(141));
+				country.dist = getCellValue(row.getCell(DISTANCE_COLUMN));
 				// country.lang = getCellValue(row.getCell(137));
 				for (int j = 0; j <= (END_YEAR - START_YEAR); j++) {
 					country.rows[j].year = START_YEAR + j;
 
 					// FDI
-					if (j >= (FDI_START_YEAR - START_YEAR)) {
-						country.rows[j].FDI = getCellValue(row.getCell(FDI_START_COLUMN - (FDI_START_YEAR - START_YEAR) + j));
-						try {
-							double value = row.getCell(FDI_START_COLUMN - (FDI_START_YEAR - START_YEAR) + j).getNumericCellValue();
-							FDI_T += value;
-							FDI_T_Count++;
-						} catch (Exception e) {
-							// do nothing for non numberic field
-						}
-
+					country.rows[j].FDI = getCellValue(row.getCell(FDI_START_COLUMN + j));
+					try {
+						double value = row.getCell(FDI_START_COLUMN + j).getNumericCellValue();
+						FDI_T += value;
+						FDI_T_Count++;
+					} catch (Exception e) {
+						// do nothing for non numberic field
 					}
 
 					// GDP
-					country.rows[j].GDPS = getCellValue(row.getCell(33 + j));
-					country.rows[j].GDPD = getCellValue(row.getCell(64 + j));
+					country.rows[j].GDPS = getCellValue(row.getCell(GDPS_START_COLUMN + j));
+					country.rows[j].GDPD = getCellValue(row.getCell(GDPD_START_COLUMN + j));
 
 					// calculate India average FDI/GDPd/GDPS at 1991~2000 and 2001~2008
 					try {
@@ -231,6 +234,7 @@ public class PoiConverter {
 
 					// FDI, GDP total
 
+					//Todo add 2000 logic
 					if (j == (1990 - START_YEAR) || j == (2000 - START_YEAR) || j == (END_YEAR - START_YEAR)) {
 						country.rows[j].FDI_T = (FDI_T_Count == 0) ? "." : FDI_T / FDI_T_Count;
 						FDI_T = 0;
@@ -253,13 +257,13 @@ public class PoiConverter {
 						country.rows[j].Net_Sec = getCellValue(row.getCell(NET_START_COLUMN + 2));
 						country.rows[j].Net_Ter = getCellValue(row.getCell(NET_START_COLUMN + 3));
 						country.rows[j].Net_NT = getCellValue(row.getCell(NET_START_COLUMN + 4));
-
 					} else if (j == (2000 - 1980)) {
 						country.rows[j].Net = getCellValue(row.getCell(NET_START_COLUMN + 5));
 						country.rows[j].Net_Pri = getCellValue(row.getCell(NET_START_COLUMN + 6));
 						country.rows[j].Net_Sec = getCellValue(row.getCell(NET_START_COLUMN + 7));
 						country.rows[j].Net_Ter = getCellValue(row.getCell(NET_START_COLUMN + 8));
 						country.rows[j].Net_NT = getCellValue(row.getCell(NET_START_COLUMN + 9));
+						//Todo add 2000 logic
 					} else {
 						country.rows[j].Net = ".";
 						country.rows[j].Net_Pri = ".";
@@ -268,9 +272,12 @@ public class PoiConverter {
 						country.rows[j].Net_NT = ".";
 					}
 					if (j % 10 == 0) {
-						country.rows[j].Net2 = getCellValue(row.getCell(NET_START_COLUMN + 10 + j / 10));
+						country.rows[j].Net2 = getCellValue(row.getCell(NET2_START_COLUMN + j / 10));
+						country.rows[j].Net3 = getCellValue(row.getCell(NET3_START_COLUMN + j / 10));
+
 					} else {
 						country.rows[j].Net2 = ".";
+						country.rows[j].Net3 = ".";
 					}
 
 					// EM
@@ -278,12 +285,8 @@ public class PoiConverter {
 						country.rows[j].EM_Flow = getCellValue(row.getCell(EM_START_COLUMN - (EM_START_YEAR - START_YEAR) + j));
 					}
 					// LifeD
-					if (j >= (LIFED_START_YEAR - START_YEAR)) {
-						country.rows[j].LifeD = getCellValue(row.getCell(LIFED_START_COLUMN - (LIFED_START_YEAR - START_YEAR) + j));
-					}
-					if (j >= (LIFE_START_YEAR - START_YEAR)) {
-						country.rows[j].Life = getCellValue(row.getCell(LIFE_START_COLUMN - (LIFE_START_YEAR - START_YEAR) + j));
-					}
+					country.rows[j].LifeD = getCellValue(row.getCell(LIFED_START_COLUMN + j));
+					country.rows[j].Life = getCellValue(row.getCell(LIFE_START_COLUMN + j));
 
 				}
 			}

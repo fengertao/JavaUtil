@@ -20,4 +20,5 @@ public class DenormRow {
 	public Object EM_Flow;
 	public Object LifeD;
 	public Object Life;
+	public Object Net3;
 }
