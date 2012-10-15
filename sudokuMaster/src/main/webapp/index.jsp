@@ -30,8 +30,8 @@ Build preparation:
   
 (3) config tomcat7 path into Window --> preferences --> server --> runtime environment
 	
-(4) copy <tomcat_home>\webapps\* into <workspace>\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps, and override the existing ROOT.
-	  copy <tomcat_home>\webapps\* into <workspace>\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\webapps.
+(4) copy <tomcat_home>\webapps\ROOT into <workspace>\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT, override the existing ROOT folder.
+	copy <tomcat_home>\webapps\* into <workspace>\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\webapps.
 	    This is fix a bug of eclipse.
 	
 (5)update <maven_home>\conf\settings.xml, add below lines into servers section
