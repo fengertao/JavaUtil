@@ -21,4 +21,7 @@ public class DenormRow {
 	public Object LifeD;
 	public Object Life;
 	public Object Net3;
+	public Object Pop25_TP;
+	public Object Pop25_T;
+	public Object Pop;
 }

@@ -36,6 +36,10 @@ public class PoiConverter {
 	public static int LIFED_START_COLUMN = 218;
 	public static int LIFE_START_COLUMN = 256;
 	public static int NET3_START_COLUMN = 308;
+	public static int POP25_TP_START_COLUMN = 330;		  //Population over age 25, tertary education, percentage.
+	public static int POP25_T_START_COLUMN = 369;		  //Population over age 25, tertary education, number of people
+	public static int POP_START_COLUMN = 408;    		  //total population
+	
 
 	public static int DISTANCE_COLUMN = 180;
 	public static int LANG_COLUMN = -1;		//Todo, lang is not used in china
@@ -43,7 +47,8 @@ public class PoiConverter {
 	
 	
 	public static void main(String[] args) throws Exception {
-		System.out.println(charlie.feng.tools.excel.PoiConverter.class.getClassLoader().getResource("."));
+		System.out.println("Start initial environment, please wait until write output excel ended");
+		//System.out.println(charlie.feng.tools.excel.PoiConverter.class.getClassLoader().getResource("."));
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream("config.properties");
 		prop.load(fis);
@@ -121,6 +126,9 @@ public class PoiConverter {
 		row.createCell(23).setCellValue("Lifed");
 		row.createCell(24).setCellValue("Life");
 		row.createCell(25).setCellValue("Net3");
+		row.createCell(26).setCellValue("POP25_TP");
+		row.createCell(27).setCellValue("POP25_T");
+		row.createCell(28).setCellValue("POP");
 	}
 
 	public void generateDenormRow(Row row, DenormRow denormRow) {
@@ -151,6 +159,9 @@ public class PoiConverter {
 		setCell(row.createCell(23), denormRow.LifeD);
 		setCell(row.createCell(24), denormRow.Life);
 		setCell(row.createCell(25), denormRow.Net3);
+		setCell(row.createCell(26), denormRow.Pop25_TP);
+		setCell(row.createCell(27), denormRow.Pop25_T);
+		setCell(row.createCell(28), denormRow.Pop);
 	}
 
 	private void setCell(Cell cell, Object value) {
@@ -284,9 +295,12 @@ public class PoiConverter {
 					if (j >= (EM_START_YEAR - START_YEAR)) {
 						country.rows[j].EM_Flow = getCellValue(row.getCell(EM_START_COLUMN - (EM_START_YEAR - START_YEAR) + j));
 					}
-					// LifeD
+					// LifeD, Life, Pop25_TP, Pop25_T, Pop
 					country.rows[j].LifeD = getCellValue(row.getCell(LIFED_START_COLUMN + j));
 					country.rows[j].Life = getCellValue(row.getCell(LIFE_START_COLUMN + j));
+					country.rows[j].Pop25_TP = getCellValue(row.getCell(POP25_TP_START_COLUMN + j));
+					country.rows[j].Pop25_T = getCellValue(row.getCell(POP25_T_START_COLUMN + j));
+					country.rows[j].Pop = getCellValue(row.getCell(POP_START_COLUMN + j));
 
 				}
 			}
@@ -299,7 +313,7 @@ public class PoiConverter {
 			e.printStackTrace();
 		}
 
-		System.out.println("read ended");
+		System.out.println("read source excel ended");
 		try {
 
 			int rowIndex = 0;
@@ -323,6 +337,6 @@ public class PoiConverter {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Write ended");
+		System.out.println("Write output excel ended");
 	}
 }
