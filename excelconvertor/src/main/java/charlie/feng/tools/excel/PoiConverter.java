@@ -36,6 +36,7 @@ public class PoiConverter {
 	public static int LIFED_START_COLUMN = 218;
 	public static int LIFE_START_COLUMN = 256;
 	public static int NET3_START_COLUMN = 308;
+	public static int EMDOPA_START_COLUMN = 323; 
 	public static int POP25_TP_START_COLUMN = 330;		  //Population over age 25, tertary education, percentage.
 	public static int POP25_T_START_COLUMN = 369;		  //Population over age 25, tertary education, number of people
 	public static int POP_START_COLUMN = 408;    		  //total population
@@ -126,9 +127,11 @@ public class PoiConverter {
 		row.createCell(23).setCellValue("Lifed");
 		row.createCell(24).setCellValue("Life");
 		row.createCell(25).setCellValue("Net3");
-		row.createCell(26).setCellValue("POP25_TP");
-		row.createCell(27).setCellValue("POP25_T");
-		row.createCell(28).setCellValue("POP");
+		row.createCell(26).setCellValue("EMDOPAH");
+		row.createCell(27).setCellValue("EMDOPAL");
+		row.createCell(28).setCellValue("POP25_TP");
+		row.createCell(29).setCellValue("POP25_T");
+		row.createCell(30).setCellValue("POP");
 	}
 
 	public void generateDenormRow(Row row, DenormRow denormRow) {
@@ -159,9 +162,11 @@ public class PoiConverter {
 		setCell(row.createCell(23), denormRow.LifeD);
 		setCell(row.createCell(24), denormRow.Life);
 		setCell(row.createCell(25), denormRow.Net3);
-		setCell(row.createCell(26), denormRow.Pop25_TP);
-		setCell(row.createCell(27), denormRow.Pop25_T);
-		setCell(row.createCell(28), denormRow.Pop);
+		setCell(row.createCell(26), denormRow.EMDOPAH);
+		setCell(row.createCell(27), denormRow.EMDOPAL);
+		setCell(row.createCell(28), denormRow.Pop25_TP);
+		setCell(row.createCell(29), denormRow.Pop25_T);
+		setCell(row.createCell(30), denormRow.Pop);
 	}
 
 	private void setCell(Cell cell, Object value) {
@@ -261,19 +266,23 @@ public class PoiConverter {
 					// SKILLD
 					country.rows[j].skillD = getCellValue(row.getCell(SKILLD_START_COLUMN + j));
 
-					// Net
+					// Net and EMDOPA
 					if (j == (1990 - 1980)) {
 						country.rows[j].Net = getCellValue(row.getCell(NET_START_COLUMN));
 						country.rows[j].Net_Pri = getCellValue(row.getCell(NET_START_COLUMN + 1));
 						country.rows[j].Net_Sec = getCellValue(row.getCell(NET_START_COLUMN + 2));
 						country.rows[j].Net_Ter = getCellValue(row.getCell(NET_START_COLUMN + 3));
 						country.rows[j].Net_NT = getCellValue(row.getCell(NET_START_COLUMN + 4));
+						country.rows[j].EMDOPAH = getCellValue(row.getCell(EMDOPA_START_COLUMN + 1));
+						country.rows[j].EMDOPAL = getCellValue(row.getCell(EMDOPA_START_COLUMN + 2));
 					} else if (j == (2000 - 1980)) {
 						country.rows[j].Net = getCellValue(row.getCell(NET_START_COLUMN + 5));
 						country.rows[j].Net_Pri = getCellValue(row.getCell(NET_START_COLUMN + 6));
 						country.rows[j].Net_Sec = getCellValue(row.getCell(NET_START_COLUMN + 7));
 						country.rows[j].Net_Ter = getCellValue(row.getCell(NET_START_COLUMN + 8));
 						country.rows[j].Net_NT = getCellValue(row.getCell(NET_START_COLUMN + 9));
+						country.rows[j].EMDOPAH = getCellValue(row.getCell(EMDOPA_START_COLUMN + 4));
+						country.rows[j].EMDOPAL = getCellValue(row.getCell(EMDOPA_START_COLUMN + 5));
 						//Todo add 2000 logic
 					} else {
 						country.rows[j].Net = ".";
@@ -281,6 +290,8 @@ public class PoiConverter {
 						country.rows[j].Net_Sec = ".";
 						country.rows[j].Net_Ter = ".";
 						country.rows[j].Net_NT = ".";
+						country.rows[j].EMDOPAH = ".";
+						country.rows[j].EMDOPAL = ".";
 					}
 					if (j % 10 == 0) {
 						country.rows[j].Net2 = getCellValue(row.getCell(NET2_START_COLUMN + j / 10));
