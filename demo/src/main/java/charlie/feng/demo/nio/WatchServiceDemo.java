@@ -28,14 +28,23 @@ public class WatchServiceDemo {
 		Files.createDirectories(testDir);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "restriction" })
+	/*
+	 * Watch the change on a directory
+	 * This code is work only on windows platform.
+	 * For linux platform, please refer to below example:
+	 * http://docs.oracle.com/javase/tutorial/essential/io/examples/WatchDir.java
+	 */
 	public static void watch() throws IOException {
 		WatchService watcher = FileSystems.getDefault().newWatchService();
 		WatchKey key = null;
 		try {
-			
 			WatchEvent.Kind<?>[] eventKinds = new WatchEvent.Kind<?>[] {ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY};
-			key = testDir.register(watcher, eventKinds, FILE_TREE);
+			WatchEvent.Modifier modifier = null;
+			if (System.getProperty("sun.desktop").equals("windows")){
+				modifier = FILE_TREE;
+			}
+			key = testDir.register(watcher, eventKinds, modifier);
 		} catch (IOException x) {
 			System.err.println(x);
 		}
