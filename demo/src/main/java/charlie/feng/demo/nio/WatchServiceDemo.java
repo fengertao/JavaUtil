@@ -40,9 +40,11 @@ public class WatchServiceDemo {
 		WatchKey key = null;
 		try {
 			WatchEvent.Kind<?>[] eventKinds = new WatchEvent.Kind<?>[] {ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY};
-			WatchEvent.Modifier modifier = null;
+			WatchEvent.Modifier[] modifier = null;
 			if (System.getProperty("sun.desktop").equals("windows")){
-				modifier = FILE_TREE;
+				modifier = new WatchEvent.Modifier[]{FILE_TREE};
+			} else {
+				modifier = new WatchEvent.Modifier[0];
 			}
 			key = testDir.register(watcher, eventKinds, modifier);
 		} catch (IOException x) {
