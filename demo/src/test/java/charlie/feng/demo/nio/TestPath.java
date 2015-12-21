@@ -5,10 +5,31 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.nio.file.*;
 
-import org.junit.Test;
+import org.apache.commons.io.FileUtils;
+import org.junit.*;
 
 public class TestPath {
 
+	static Path testDir = null;
+	
+	@BeforeClass
+	public static void setup() throws IOException {
+		Path homePath = FileSystems.getDefault().getPath(System.getProperty("user.home"));
+		testDir = homePath.resolve("testWatchService");
+		if (Files.exists(testDir)) {
+			FileUtils.deleteDirectory(testDir.toFile());
+		}
+		Files.createDirectories(testDir);
+		Files.createFile(testDir.resolve("FileA"));
+	}
+	
+	@AfterClass
+	public static void tearDown() throws IOException {
+		if (Files.exists(testDir)) {
+			FileUtils.deleteDirectory(testDir.toFile());
+		}
+
+	}
 
 	@Test
 	public void testEquals() throws IOException{
@@ -32,6 +53,10 @@ public class TestPath {
 			assertEquals("Path to URI is not normalized", p4.toUri().toString(), "file:///C:/Users/Daniel/../Charlie/FILEA");
 			
 			assertEquals("GetRoot in windows return driver", p1.getRoot().toString().toUpperCase(), "C:\\");
+			
+	        //Run this line only if login as Daniel, and setup env
+			//assertTrue("Path is not normalized before isSameFile", Files.isSameFile(Paths.get("C:\\Users\\Daniel\\..\\Daniel\\testWatchService"), Paths.get("C:\\Users\\Daniel\\testWatchService")));
+			//assertTrue("Symlink is same file ", Files.isSameFile(Paths.get("C:\\Users\\Daniel\\Music"), Paths.get("C:\\Users\\Daniel\\Test3")));
 			
 		} else {
 			Path p1 = Paths.get("/home/Charlie/FileA");
