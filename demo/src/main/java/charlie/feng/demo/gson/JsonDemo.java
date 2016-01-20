@@ -21,6 +21,13 @@ public class JsonDemo {
 		JsonArray jarray = jobject.getAsJsonArray("array1");
 		jobject = jarray.get(0).getAsJsonObject();
 		assert jobject.toString().equals("{\"eleKey1\":\"eleValue1\"}");
+		
+		JsonObject newJsonObject = new JsonObject();
+		newJsonObject.add("input", inputJobject);
+		newJsonObject.add("output", outputobject);
+		newJsonObject.add("array1", jarray);
+		System.out.println(newJsonObject);
+		assert newJsonObject.toString().equals("{\"input\":{\"inputKey1\":\"inputValue1\"},\"output\":{\"outputKey1\":\"outputValue1\"},\"array1\":[{\"eleKey1\":\"eleValue1\"}]}");
 
 	}
 
