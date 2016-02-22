@@ -17,6 +17,8 @@ public class QuickSort extends AbstractSort {
 	}
 
 	private int[] sort(int[] input, int begin, int end) {
+		if (begin >= end)
+			return input;
 		int monitorValue = input[end];
 		int leftIndex = begin;
 		int rightIndex = end - 1;
@@ -29,10 +31,9 @@ public class QuickSort extends AbstractSort {
 			}
 			swap(input, leftIndex, rightIndex);
 		}
-		if (input[leftIndex] >= input[end])
+		if (input[leftIndex] >= input[end]) {
 			swap(input, leftIndex, end);
-		else {
-			System.out.println(input);
+		} else {
 			leftIndex++;
 		}
 		sort(input, begin, leftIndex - 1);
