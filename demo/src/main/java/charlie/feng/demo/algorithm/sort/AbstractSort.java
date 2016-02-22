@@ -1,7 +1,9 @@
 package charlie.feng.demo.algorithm.sort;
 
-public abstract class AbstractSort {
+public abstract class AbstractSort<T extends Comparable<T>> {
 
-	public abstract int[] sort(int[] input);
+	public T[] sort(T[] input){
+		return null;
+	};
 
 }

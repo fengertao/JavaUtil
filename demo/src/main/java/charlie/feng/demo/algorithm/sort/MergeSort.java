@@ -1,12 +1,14 @@
 package charlie.feng.demo.algorithm.sort;
 
-public class MergeSort extends AbstractSort {
+import java.lang.reflect.Array;
 
-	int[] output;
+public class MergeSort<T extends Comparable<T>> extends AbstractSort<T> {
+
+	T[] output;
+	Class<T> componentType;
 
 	@Override
-	public int[] sort(int[] input) {
-
+	public T[] sort(T[] input) {
 		this.output = input;
 		sort(0, input.length);
 		return output;
@@ -25,7 +27,8 @@ public class MergeSort extends AbstractSort {
 	private void merge(int begin, int mid, int end) {
 		if (end == begin)
 			return;
-		int[] temp = new int[end - begin];
+	      
+		T[] temp = (T[])Array.newInstance(componentType, end - begin);
 		int tempIndex = 0;
 		int leftIndex = begin;
 		int rightIndex = mid + 1;
@@ -42,7 +45,7 @@ public class MergeSort extends AbstractSort {
 				}
 				break;
 			}
-			if (output[leftIndex] <= output[rightIndex]) {
+			if (output[leftIndex].compareTo( output[rightIndex]) <= 0) {
 				temp[tempIndex++] = output[leftIndex++];
 			} else {
 				temp[tempIndex++] = output[rightIndex++];

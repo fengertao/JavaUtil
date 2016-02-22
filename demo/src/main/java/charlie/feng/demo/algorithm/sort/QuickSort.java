@@ -1,37 +1,37 @@
 package charlie.feng.demo.algorithm.sort;
 
-public class QuickSort extends AbstractSort {
+public class QuickSort<T extends Comparable<T>> extends AbstractSort<T> {
 
-	private void swap(int[] input, int i, int j) {
-		int iTemp = input[i];
+	private void swap(T[] input, int i, int j) {
+		T iTemp = input[i];
 		input[i] = input[j];
 		input[j] = iTemp;
 	}
 
 	@Override
-	public int[] sort(int[] input) {
+	public T[] sort(T[] input) {
 		if ((input == null) || (input.length == 0)) {
 			return input;
 		}
 		return sort(input, 0, input.length - 1);
 	}
 
-	private int[] sort(int[] input, int begin, int end) {
+	private T[] sort(T[] input, int begin, int end) {
 		if (begin >= end)
 			return input;
-		int monitorValue = input[end];
+		T monitorValue = input[end];
 		int leftIndex = begin;
 		int rightIndex = end - 1;
 		while (leftIndex < rightIndex) {
-			while ((leftIndex < rightIndex) && (input[leftIndex] < monitorValue)) {
+			while ((leftIndex < rightIndex) && (input[leftIndex].compareTo( monitorValue)<0)) {
 				leftIndex++;
 			}
-			while ((leftIndex < rightIndex) && (input[rightIndex] >= monitorValue)) {
+			while ((leftIndex < rightIndex) && (input[rightIndex].compareTo(monitorValue)>=0)) {
 				rightIndex--;
 			}
 			swap(input, leftIndex, rightIndex);
 		}
-		if (input[leftIndex] >= input[end]) {
+		if (input[leftIndex].compareTo(input[end])>=0) {
 			swap(input, leftIndex, end);
 		} else {
 			leftIndex++;
