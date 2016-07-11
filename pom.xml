@@ -1,28 +1,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>charlie.feng</groupId>
-		<artifactId>parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
-	<artifactId>util</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
-	<name>util</name>
-	<url>http://maven.apache.org</url>
+	<groupId>charlie.feng</groupId>
+	<artifactId>parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Parent Of All Java Project</name>
+	<url>http://blog.warrenfeng.com</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven-compiler-plugin-version>3.5.1</maven-compiler-plugin-version>
+		<tomcat-maven-plugin>1.1</tomcat-maven-plugin>
 	</properties>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
+        <version>${maven-compiler-plugin-version}</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -47,4 +45,13 @@
 		</dependency>
 
 	</dependencies>
+	
+  <modules>
+    <module>util</module>
+    <module>demo</module>
+    <module>eeutil</module>
+    <module>springstudy</module>
+    <module>sudokuMaster</module>
+  </modules>
+
 </project>
