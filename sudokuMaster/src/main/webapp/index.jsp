@@ -1,6 +1,6 @@
 <html>
 <body>
-<h2>Sudoku Master Welcome You. please click <a href="http://127.0.0.1:8080/sudokuMaster/input.jsp">here</a> to start the game!</h2>
+<h2>Sudoku Master Welcome You. please click <a href="input.jsp">here</a> to start the game!</h2>
 <h3>
 <textarea rows="70" cols="160">
 This project build with maven3 + tomcat7.
