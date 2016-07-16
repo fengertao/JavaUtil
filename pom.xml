@@ -14,6 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven-compiler-plugin-version>3.5.1</maven-compiler-plugin-version>
 		<tomcat-maven-plugin>1.1</tomcat-maven-plugin>
+		<parent-version>0.0.1-SNAPSHOT</parent-version>
 	</properties>
 	<build>
 		<plugins>
