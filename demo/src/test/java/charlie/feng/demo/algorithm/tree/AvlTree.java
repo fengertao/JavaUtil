@@ -283,15 +283,15 @@ public class AvlTree {
 		System.out.println("Checking... (no more output means success)");
 
 		for (int i = GAP; i != 0; i = (i + GAP) % NUMS)
-			t.insert(new Integer(i));
+			t.insert(i);
 
 		if (NUMS < 40)
 			t.printTree();
-		if (((Integer) (t.findMin())).intValue() != 1 || ((Integer) (t.findMax())).intValue() != NUMS - 1)
+		if (((Integer) (t.findMin())) != 1 || ((Integer) (t.findMax())) != NUMS - 1)
 			System.out.println("FindMin or FindMax error!");
 
 		for (int i = 1; i < NUMS; i++)
-			if (((Integer) (t.find(new Integer(i)))).intValue() != i)
+			if (((Integer) (t.find(new Integer(i)))) != i)
 				System.out.println("Find error1!");
 	}
 
