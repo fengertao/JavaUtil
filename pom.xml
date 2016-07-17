@@ -5,7 +5,7 @@
   <artifactId>parent</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
-  <name>Parent Of All Java Project</name>
+  <name>Parent Of Java Project</name>
   <url>http://blog.warrenfeng.com</url>
 
   <properties>
