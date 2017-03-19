@@ -33,14 +33,13 @@ public abstract class AbstractSortTest<T> {
 		for (int loop = 0; loop < LOOPS; loop++) {
 			Integer[] input = new Integer[LENGTH];
 			for (int i = 0; i < LENGTH; i++) {
-				input[i] = new Integer((int)Math.round(Math.random() * RANGE));
+				input[i] = (int)Math.round(Math.random() * RANGE);
 			}
 			print(input);
 
 			AbstractSort<Integer> sort = new QuickSort<Integer>();
 			Integer[] output = sort.sort(input);
 			print(output);
-			System.out.println("");
 
 			Assert.assertTrue(isOrdered(output));
 
@@ -48,10 +47,11 @@ public abstract class AbstractSortTest<T> {
 	}
 
 	private void print(Object[] output) {
-		for (Object i : output) {
-			System.out.print(i + " ");
-		}
-		System.out.println("");
+		//uncomment me during test.
+//		for (Object i : output) {
+//			System.out.print(i + " ");
+//		}
+//		System.out.println("");
 	}
 
 	private boolean isValidated(Integer[] output, Integer[] correctOutput) {
