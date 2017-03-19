@@ -47,7 +47,7 @@ public class AvlTree {
 	}
 
 	/**
-	 * Find the smallest item in the tree.
+	 * FindSingleThread the smallest item in the tree.
 	 * 
 	 * @return smallest item or null if empty.
 	 */
@@ -56,7 +56,7 @@ public class AvlTree {
 	}
 
 	/**
-	 * Find the largest item in the tree.
+	 * FindSingleThread the largest item in the tree.
 	 * 
 	 * @return the largest item of null if empty.
 	 */
@@ -65,7 +65,7 @@ public class AvlTree {
 	}
 
 	/**
-	 * Find an item in the tree.
+	 * FindSingleThread an item in the tree.
 	 * 
 	 * @param x
 	 *            the item to search for.
@@ -292,7 +292,7 @@ public class AvlTree {
 
 		for (int i = 1; i < NUMS; i++)
 			if (((Integer) (t.find(new Integer(i)))) != i)
-				System.out.println("Find error1!");
+				System.out.println("FindSingleThread error1!");
 	}
 
 	class AvlNode {
