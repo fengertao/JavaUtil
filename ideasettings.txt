@@ -1,0 +1,6 @@
+Debugger:Java, Debugger
+Default project
+Editor Colors
+Key maps
+Key maps (schemes)
+Look and Feel
