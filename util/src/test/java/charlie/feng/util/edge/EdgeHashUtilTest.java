@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class EdgeHashUtilTest {
     @Test public void getDBSchemaByAcct() throws Exception {
         String schema = new EdgeHashUtil().getDBSchemaByAcct("                           1,187,861,537,802,221,537");
-        assertEquals("DB Schema and database should correct", "Schema IDI06DBA in Database DR00", schema);
+        assertEquals("DB Schema and database should correct", "Schema IDI06DBA in Database DR03", schema);
     }
 
 }
