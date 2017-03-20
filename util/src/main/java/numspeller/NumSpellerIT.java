@@ -9,29 +9,27 @@ package numspeller;
 // Referenced classes of package numspeller:
 //            NumSpeller__
 
-final class NumSpellerIT extends NumSpeller__
-{
+final class NumSpellerIT extends NumSpeller__ {
 
-    NumSpellerIT()
-    {
-        NumSpeller__.periodo_singular = (new String[] {
-            "cento", "mille", "un milione", "un miliardo", "un billon", "un billardo", "un trillon", "un trillardo", "un cuatrillon", "un cuatrillardo", 
-            "un quintillon", "un quintillardo"
+    NumSpellerIT() {
+        NumSpeller__.periodo_singular = (new String[]{
+                "cento", "mille", "un milione", "un miliardo", "un billon", "un billardo", "un trillon", "un trillardo", "un cuatrillon", "un cuatrillardo",
+                "un quintillon", "un quintillardo"
         });
-        NumSpeller__.periodo_plural = (new String[] {
-            "cento", "mila", "milione", "miliardo", "billon", "billardo", "trillon", "trillardo", "cuatrillon", "cuatrillardo", 
-            "quintillones", "quintillardo"
+        NumSpeller__.periodo_plural = (new String[]{
+                "cento", "mila", "milione", "miliardo", "billon", "billardo", "trillon", "trillardo", "cuatrillon", "cuatrillardo",
+                "quintillones", "quintillardo"
         });
-        NumSpeller__.centenas = (new String[] {
-            "", "cento", "dueccento", "treccento", "quattroccento", "cinquecento", "seiscento", "settecento", "ottocento", "novecento"
+        NumSpeller__.centenas = (new String[]{
+                "", "cento", "dueccento", "treccento", "quattroccento", "cinquecento", "seiscento", "settecento", "ottocento", "novecento"
         });
-        NumSpeller__.decenas = (new String[] {
-            "", "diece", "venti", "trenta", "quaranta", "cinquanta", "sessanta", "settanta", "ottanta", "novanta"
+        NumSpeller__.decenas = (new String[]{
+                "", "diece", "venti", "trenta", "quaranta", "cinquanta", "sessanta", "settanta", "ottanta", "novanta"
         });
-        NumSpeller__.unidades = (new String[] {
-            "cero", "uno", "due", "tre", "cuattro", "cinque", "sei", "sette", "otto", "nove", 
-            "diece", "undici", "dodici", "tredici", "quattordici", "quindici", "sedici", "diciasette", "diciotto", "dicianove", 
-            "", "ventuno", "", "", "", "", "", "", "ventotto"
+        NumSpeller__.unidades = (new String[]{
+                "cero", "uno", "due", "tre", "cuattro", "cinque", "sei", "sette", "otto", "nove",
+                "diece", "undici", "dodici", "tredici", "quattordici", "quindici", "sedici", "diciasette", "diciotto", "dicianove",
+                "", "ventuno", "", "", "", "", "", "", "ventotto"
         });
         NumSpeller__.y_decenas = "";
         NumSpeller__.y_centenas = " ";
@@ -42,8 +40,7 @@ final class NumSpellerIT extends NumSpeller__
         NumSpeller__.contraccion2 = "taotto|totto";
     }
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         NumSpellerIT c = new NumSpellerIT();
         System.out.println(c.leer("123456789012"));
     }

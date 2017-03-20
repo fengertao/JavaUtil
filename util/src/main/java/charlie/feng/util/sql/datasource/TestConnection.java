@@ -1,6 +1,7 @@
 /**
  * This source code is a component of Charlie Feng's source library,
  * All copyright reverved.
+ *
  * @author Charlie Feng (Fengertao@hotmail.com)
  */
 package charlie.feng.util.sql.datasource;
@@ -22,11 +23,11 @@ import java.sql.SQLException;
  */
 public class TestConnection {
 
-	public static void main(String[] args) throws SQLException {
-		Connection con = AbstractConnectionFactory.getConnection("jdbc:odbc:Unit", "", "", true);
-		System.out.println("Connection got.");
-		con.close();
-		System.out.println("Connection closed.");
-		
-	}
+    public static void main(String[] args) throws SQLException {
+        Connection con = AbstractConnectionFactory.getConnection("jdbc:odbc:Unit", "", "", true);
+        System.out.println("Connection got.");
+        con.close();
+        System.out.println("Connection closed.");
+
+    }
 }

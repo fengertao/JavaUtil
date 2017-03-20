@@ -9,29 +9,27 @@ package numspeller;
 // Referenced classes of package numspeller:
 //            NumSpeller__
 
-final class NumSpellerEH extends NumSpeller__
-{
+final class NumSpellerEH extends NumSpeller__ {
 
-    NumSpellerEH()
-    {
-        NumSpeller__.periodo_singular = (new String[] {
-            "ehun", "mila", "milioi bat", "miliardo bat", "bilioi bat", "biliardo bat", "trillioi bat", "triliardo bat", "kuatrilioi bat", "kuatriliardo bat", 
-            "kintilioi bat", "kintiliardo bat"
+    NumSpellerEH() {
+        NumSpeller__.periodo_singular = (new String[]{
+                "ehun", "mila", "milioi bat", "miliardo bat", "bilioi bat", "biliardo bat", "trillioi bat", "triliardo bat", "kuatrilioi bat", "kuatriliardo bat",
+                "kintilioi bat", "kintiliardo bat"
         });
-        NumSpeller__.periodo_plural = (new String[] {
-            "ehun", "mila", "milioi", "miliardo", "bilioi", "biliardo", "trilioi", "triliardo", "kuatrilioi", "kuatrilardo", 
-            "kintilioi", "kintiliardo"
+        NumSpeller__.periodo_plural = (new String[]{
+                "ehun", "mila", "milioi", "miliardo", "bilioi", "biliardo", "trilioi", "triliardo", "kuatrilioi", "kuatrilardo",
+                "kintilioi", "kintiliardo"
         });
-        NumSpeller__.centenas = (new String[] {
-            "", "ehun", "berrehun", "hirurehun", "laurehun", "bostehun", "seirehun", "zazpirehun", "zortzirehun", "bederatzirehun"
+        NumSpeller__.centenas = (new String[]{
+                "", "ehun", "berrehun", "hirurehun", "laurehun", "bostehun", "seirehun", "zazpirehun", "zortzirehun", "bederatzirehun"
         });
-        NumSpeller__.decenas = (new String[] {
-            "", "hamar", "hogei", "", "berrogei", "", "hirurogei", "", "laurogei", ""
+        NumSpeller__.decenas = (new String[]{
+                "", "hamar", "hogei", "", "berrogei", "", "hirurogei", "", "laurogei", ""
         });
-        NumSpeller__.unidades = (new String[] {
-            "zero", "bat", "bi", "hiru", "lau", "bost", "sei", "zazpi", "zortzi", "bederatzi", 
-            "hamar", "hamaika", "hamabi", "hamairu", "hamalau", "hamabost", "hamasei", "hamazazpi", "hamazortzi", "hemeretzi", 
-            "hogei"
+        NumSpeller__.unidades = (new String[]{
+                "zero", "bat", "bi", "hiru", "lau", "bost", "sei", "zazpi", "zortzi", "bederatzi",
+                "hamar", "hamaika", "hamabi", "hamairu", "hamalau", "hamabost", "hamasei", "hamazazpi", "hamazortzi", "hemeretzi",
+                "hogei"
         });
         NumSpeller__.y_decenas = "ta";
         NumSpeller__.y_centenas = " ta ";
@@ -40,8 +38,7 @@ final class NumSpellerEH extends NumSpeller__
         NumSpeller__.signo_menos = "minus";
     }
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         NumSpellerEH c = new NumSpellerEH();
         System.out.println(c.leer("123456789012"));
     }

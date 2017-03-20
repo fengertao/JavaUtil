@@ -1,11 +1,5 @@
 package charlie.feng.demo.script;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -26,7 +20,7 @@ public class ScriptEngineDemo {
         engine.eval(scp.toString());
         //        Object[] params={127L,127L}; //return true in both 1.7 and 1.8
         //        Object[] params={128l,128l}; //reture false in 1.8
-        Object[] params = { 12345678L, 12345678L };
+        Object[] params = {12345678L, 12345678L};
         System.out.println(((Invocable) engine).invokeFunction("foo", params));
 
     }

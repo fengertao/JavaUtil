@@ -1,6 +1,7 @@
 /**
  * This source code is a component of Charlie Feng's source library,
  * All copyright reverved.
+ *
  * @author Charlie Feng (Fengertao@hotmail.com)
  */
 package charlie.feng.xml.XML2Table.sax;

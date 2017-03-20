@@ -26,7 +26,8 @@ Build preparation:
 	<user username="tomcat" password="tomcat" roles="tomcat"/>
 	<user username="both" password="tomcat" roles="tomcat,role1"/>
 	<user username="role1" password="tomcat" roles="role1"/>
-	<user username="admin" password="admin" roles="manager,manager-gui,manager-jmx,manager-script,manager-status,tomcat"/>
+	<user username="admin" password="admin"
+          roles="manager,manager-gui,manager-jmx,manager-script,manager-status,tomcat"/>
   
 (3) config tomcat7 path into Window --> preferences --> server --> runtime environment
 	

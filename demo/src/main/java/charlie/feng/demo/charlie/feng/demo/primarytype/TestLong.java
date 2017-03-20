@@ -6,7 +6,7 @@ package charlie.feng.demo.charlie.feng.demo.primarytype;
 public class TestLong {
 
     public static void main(String[] args) {
-        String[] testStrs = new String[] {"0", "-1", "1", null};
+        String[] testStrs = new String[]{"0", "-1", "1", null};
         for (String s : testStrs) {
             System.out.println(s);
 //            System.out.println(new Long(s));

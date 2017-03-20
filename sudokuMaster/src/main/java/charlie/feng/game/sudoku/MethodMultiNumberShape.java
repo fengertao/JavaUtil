@@ -6,9 +6,9 @@ package charlie.feng.game.sudoku;
 //So we can know that in row1,2,4,5,7,8,9,    the number 2,3,4 are excluded from column 7,8,9
 public class MethodMultiNumberShape implements IMethod {
 
-	public void apply(Matrix matrix) {
-		// TODO Auto-generated method stub
+    public void apply(Matrix matrix) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
 }

@@ -1,6 +1,7 @@
 /**
  * This source code is a component of Charlie Feng's source library,
  * All copyright reverved.
+ *
  * @author Charlie Feng (Fengertao@hotmail.com)
  */
 package charlie.feng.xml.XML2Table.sax;
@@ -18,35 +19,35 @@ package charlie.feng.xml.XML2Table.sax;
  * @author Charlie Feng
  */
 public class LevelInfo {
-	int level;
-	int sibling = 0;
+    int level;
+    int sibling = 0;
 
-	/**
-	 * @return
-	 */
-	public int getLevel() {
-		return level;
-	}
+    /**
+     * @return
+     */
+    public int getLevel() {
+        return level;
+    }
 
-	/**
-	 * @return
-	 */
-	public int getSibling() {
-		return sibling;
-	}
+    /**
+     * @param i
+     */
+    public void setLevel(int i) {
+        level = i;
+    }
 
-	/**
-	 * @param i
-	 */
-	public void setLevel(int i) {
-		level = i;
-	}
+    /**
+     * @return
+     */
+    public int getSibling() {
+        return sibling;
+    }
 
-	/**
-	 * @param i
-	 */
-	public void setSibling(int i) {
-		sibling = i;
-	}
+    /**
+     * @param i
+     */
+    public void setSibling(int i) {
+        sibling = i;
+    }
 
 }

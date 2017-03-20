@@ -1,11 +1,5 @@
 package charlie.feng.util.edge;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
-
 /**
  * Created on 7/13/2016.
  */
@@ -13,7 +7,7 @@ public class SwBucketId {
 
     //the long string copy from database "Last_updated" field
     private static long unixTimeInSeconds = 1479153970;   //The time updated field of Edge database, in second instead of minisecond.
-                                                          //if today is bucket 19, tomorrow will be bucket 20
+    //if today is bucket 19, tomorrow will be bucket 20
     private static int swType_90_72 = 90; //90 OR 72
     private static int swGranularity = 1; //1,30 OR 5
 //    private static String ts = "2016/7/11 15:23:41";

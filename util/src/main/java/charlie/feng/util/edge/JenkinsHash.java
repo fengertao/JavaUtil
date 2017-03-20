@@ -2,13 +2,13 @@ package charlie.feng.util.edge;
 
 /**
  * Hash algorithm by Bob Jenkins, 1996.
- *
+ * <p>
  * You may use this code any way you wish, private, educational, or commercial.  It's free.
  * See: http://burtleburtle.net/bob/hash/doobs.html
- *
+ * <p>
  * Use for edge table lookup, or anything where one collision in 2^^32
  * is acceptable.  Do NOT use for cryptographic purposes.
- *
+ * <p>
  * Java port by Gray Watson http://256.com/gray/
  */
 public class JenkinsHash {
@@ -74,15 +74,33 @@ public class JenkinsHash {
      * Mix up the values in the edge function.
      */
     private void hashMix() {
-        a = subtract(a, b); a = subtract(a, c); a = xor(a, c >> 13);
-        b = subtract(b, c); b = subtract(b, a); b = xor(b, leftShift(a, 8));
-        c = subtract(c, a); c = subtract(c, b); c = xor(c, (b >> 13));
-        a = subtract(a, b); a = subtract(a, c); a = xor(a, (c >> 12));
-        b = subtract(b, c); b = subtract(b, a); b = xor(b, leftShift(a, 16));
-        c = subtract(c, a); c = subtract(c, b); c = xor(c, (b >> 5));
-        a = subtract(a, b); a = subtract(a, c); a = xor(a, (c >> 3));
-        b = subtract(b, c); b = subtract(b, a); b = xor(b, leftShift(a, 10));
-        c = subtract(c, a); c = subtract(c, b); c = xor(c, (b >> 15));
+        a = subtract(a, b);
+        a = subtract(a, c);
+        a = xor(a, c >> 13);
+        b = subtract(b, c);
+        b = subtract(b, a);
+        b = xor(b, leftShift(a, 8));
+        c = subtract(c, a);
+        c = subtract(c, b);
+        c = xor(c, (b >> 13));
+        a = subtract(a, b);
+        a = subtract(a, c);
+        a = xor(a, (c >> 12));
+        b = subtract(b, c);
+        b = subtract(b, a);
+        b = xor(b, leftShift(a, 16));
+        c = subtract(c, a);
+        c = subtract(c, b);
+        c = xor(c, (b >> 5));
+        a = subtract(a, b);
+        a = subtract(a, c);
+        a = xor(a, (c >> 3));
+        b = subtract(b, c);
+        b = subtract(b, a);
+        b = xor(b, leftShift(a, 10));
+        c = subtract(c, a);
+        c = subtract(c, b);
+        c = xor(c, (b >> 15));
     }
 
     /**
@@ -90,9 +108,9 @@ public class JenkinsHash {
      * key affects every bit of the return value.  Every 1-bit and 2-bit
      * delta achieves avalanche.  The best edge table sizes are powers of 2.
      *
-     * @param buffer Byte array that we are hashing on.
+     * @param buffer       Byte array that we are hashing on.
      * @param initialValue Initial value of the edge if we are continuing from
-     * a previous run.  0 if none.
+     *                     a previous run.  0 if none.
      * @return Hash value for the buffer.
      */
     public long hash(byte[] buffer, long initialValue) {
@@ -108,7 +126,7 @@ public class JenkinsHash {
 
         // handle most of the key
         pos = 0;
-        for (len = buffer.length; len >=12; len -= 12) {
+        for (len = buffer.length; len >= 12; len -= 12) {
             a = add(a, fourByteToLong(buffer, pos));
             b = add(b, fourByteToLong(buffer, pos + 4));
             c = add(c, fourByteToLong(buffer, pos + 8));
@@ -119,7 +137,7 @@ public class JenkinsHash {
         c += buffer.length;
 
         // all the case statements fall through to the next on purpose
-        switch(len) {
+        switch (len) {
             case 11:
                 c = add(c, leftShift(byteToLong(buffer[pos + 10]), 24));
             case 10:
@@ -152,6 +170,7 @@ public class JenkinsHash {
 
     /**
      * See edge(byte[] buffer, long initialValue)
+     *
      * @param buffer Byte array that we are hashing on.
      * @return Hash value for the buffer.
      */

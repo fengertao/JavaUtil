@@ -9,10 +9,8 @@ package numspeller;
 // Referenced classes of package numspeller:
 //            NumSpellerUK
 
-final class NumSpeller extends NumSpellerUK
-{
+final class NumSpeller extends NumSpellerUK {
 
-    NumSpeller()
-    {
+    NumSpeller() {
     }
 }

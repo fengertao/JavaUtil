@@ -1,5 +1,5 @@
 <!ELEMENT Civ4BonusClassInfos (BonusClassInfos)>
-<!ELEMENT BonusClassInfos (BonusClassInfo)*>
-<!ELEMENT BonusClassInfo (Type, iUnique)>
-<!ELEMENT Type (#PCDATA)>
-<!ELEMENT iUnique (#PCDATA)>
+        <!ELEMENT BonusClassInfos (BonusClassInfo)*>
+        <!ELEMENT BonusClassInfo (Type, iUnique)>
+        <!ELEMENT Type (#PCDATA)>
+        <!ELEMENT iUnique (#PCDATA)>

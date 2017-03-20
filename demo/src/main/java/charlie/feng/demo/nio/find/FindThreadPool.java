@@ -12,14 +12,14 @@ import java.util.concurrent.ThreadPoolExecutor;
  * Created by jfeng1 on 11/25/2016.
  */
 public class FindThreadPool {
-    static long start;
     public static ExecutorService es;
+    static long start;
 
     public static void main(String[] args) throws Exception {
         start = System.currentTimeMillis();
         doFind();
         ;
-        while(((ThreadPoolExecutor)es).getActiveCount() > 0) {
+        while (((ThreadPoolExecutor) es).getActiveCount() > 0) {
             Thread.yield();
         }
         System.out.println(System.currentTimeMillis() - start);
@@ -50,7 +50,8 @@ class FindRunable implements Runnable {
 
     }
 
-    @Override public void run() {
+    @Override
+    public void run() {
         try {
             for (Path path : Files.newDirectoryStream(currentPath)) {
                 String filename = path.getFileName().toString();
@@ -62,7 +63,7 @@ class FindRunable implements Runnable {
                     FindThreadPool.es.execute(findRunable);
                 }
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
 
         }
 

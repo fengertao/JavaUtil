@@ -1,6 +1,7 @@
 /**
  * This source code is a component of Charlie Feng's source library,
  * All copyright reverved.
+ *
  * @author Charlie Feng (Fengertao@hotmail.com)
  */
 package charlie.feng.xml.XML2Table;
@@ -20,23 +21,23 @@ package charlie.feng.xml.XML2Table;
  */
 @SuppressWarnings("unchecked")
 public class Handicap extends PlainXML2TableByDom {
-	
 
-	public static void main(String[] args) throws Exception {
-		Handicap proc = new Handicap();
-		proc.compositTagMap.put( "Goodies", new Integer(20));
-		proc.compositTagMap.put( "FreeTechs", new Integer(4));
-		proc.compositTagMap.put( "AIFreeTechs", new Integer(4));
+
+    public static void main(String[] args) throws Exception {
+        Handicap proc = new Handicap();
+        proc.compositTagMap.put("Goodies", new Integer(20));
+        proc.compositTagMap.put("FreeTechs", new Integer(4));
+        proc.compositTagMap.put("AIFreeTechs", new Integer(4));
 //		proc.escapeTagSet.add("DiplomacyIntroMusicPeace");
-		proc.recordTag = "HandicapInfo";
-		proc.tableName = "Handicap";
-		proc.xmlPath = "C:\\FJ\\ent\\civiv\\Assets\\XML\\GameInfo\\CIV4HandicapInfo.xml";
-		proc.dbUrl = "jdbc:odbc:Handicap";
-		proc.id = "";
-		proc.pwd = "";
-		
-		
-		proc.run();
-	}
-	
+        proc.recordTag = "HandicapInfo";
+        proc.tableName = "Handicap";
+        proc.xmlPath = "C:\\FJ\\ent\\civiv\\Assets\\XML\\GameInfo\\CIV4HandicapInfo.xml";
+        proc.dbUrl = "jdbc:odbc:Handicap";
+        proc.id = "";
+        proc.pwd = "";
+
+
+        proc.run();
+    }
+
 }

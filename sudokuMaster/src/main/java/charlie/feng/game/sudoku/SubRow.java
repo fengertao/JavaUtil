@@ -1,5 +1,5 @@
 package charlie.feng.game.sudoku;
 
-public class SubRow extends SubGroup{
+public class SubRow extends SubGroup {
 
 }

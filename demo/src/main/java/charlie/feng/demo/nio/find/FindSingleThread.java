@@ -1,15 +1,9 @@
 package charlie.feng.demo.nio.find;
 
-import charlie.feng.util.edge.DateUtil;
-
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by jfeng1 on 11/25/2016.
@@ -21,7 +15,7 @@ public class FindSingleThread {
 //        doFind();
         start = System.currentTimeMillis();
         doFind();
-        while(Thread.activeCount() >2) {
+        while (Thread.activeCount() > 2) {
 //            System.out.println("Total Threads:" + Thread.activeCount());
             Thread.yield();
         }
@@ -52,7 +46,8 @@ class FindThread implements Runnable {
 
     }
 
-    @Override public void run() {
+    @Override
+    public void run() {
         try {
             for (Path path : Files.newDirectoryStream(currentPath)) {
                 String filename = path.getFileName().toString();
@@ -64,7 +59,7 @@ class FindThread implements Runnable {
                     new Thread(findThread).start();
                 }
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
 
         }
 
