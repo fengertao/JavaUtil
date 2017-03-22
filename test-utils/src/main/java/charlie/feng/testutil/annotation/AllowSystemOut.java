@@ -1,4 +1,4 @@
-package charlie.feng.util.junit;
+package charlie.feng.testutil.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,10 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by jfeng1 on 2017/3/20.
+ * Add @AllowSystemOut annatation will disable junit system out/err check.
+ * refer to NoSystemOutWatcher for detail.
+ * refer to NoSystemOutTest for example.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.METHOD})
 public @interface AllowSystemOut {
-
+    String[] patterns();
 }
+
