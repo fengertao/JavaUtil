@@ -1,12 +1,15 @@
 package charlie.feng.testutil.watcher;
 
-import charlie.feng.testutil.annotation.AllowSystemOut;
+import charlie.feng.testutil.annotation.AllowedOutput;
+import charlie.feng.testutil.annotation.HiddenOutput;
+import org.apache.log4j.Appender;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.AssumptionViolatedException;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -29,8 +32,9 @@ public class SystemOutWatcher extends TestWatcher {
 
     private final PrintStream stdout = System.out;
     private final PrintStream stderr = System.err;
+    private Appender origConsoleAppender;
     private ByteArrayOutputStream bos;
-    protected Logger logger = LoggerFactory.getLogger(SystemOutWatcher.class);
+    protected Logger logger = Logger.getLogger(SystemOutWatcher.class);
 
     @Override
     protected void succeeded(Description description) {
@@ -40,7 +44,9 @@ public class SystemOutWatcher extends TestWatcher {
             String[] outputs = systemOutput.split("\n|\r");
             for (String output : outputs) {
                 if (output.length() == 0) {
-                } else if (isExceptedLog(output, description)) {
+                } else if (isHiddenLog(output, description)) {
+                    //do nothing and hidden the log
+                } else if (isAllowedLog(output, description)) {
                     logger.info(output);
                 } else {
                     Assert.fail("[Unexpected Output] " + output);
@@ -51,25 +57,47 @@ public class SystemOutWatcher extends TestWatcher {
         String[] logs = allLog.split("\n|\r");
         for (String log : logs) {
             if (log.length() == 0) {
-            } else if (isExceptedLog(log, description)) {
-                logger.info(log);
+            } else if (isHiddenLog(log, description)) {
+                //do nothing and hidden the log
+            } else if (isAllowedLog(log, description)) {
+                //do nothing
             } else {
                 Assert.fail("[Unexpected Log] " + log);
             }
         }
     }
 
-    private boolean isExceptedLog(String log, Description description) {
-        //Debug level log in test case is excepted
-        if (log.startsWith("[Log4j DEBUG:]")) {
+    private boolean isHiddenLog(String log, Description description) {
+        //SLF4J warning can be hidden
+        if  (log.startsWith("SLF4J:")) {
             return true;
         }
 
-        AllowSystemOut allowSystemOut = description.getAnnotation(AllowSystemOut.class);
-        if ((allowSystemOut == null) || (allowSystemOut.patterns() == null) || (allowSystemOut.patterns().length == 0)) {
+        HiddenOutput outputAnnotation = description.getAnnotation(HiddenOutput.class) ;
+        if ((outputAnnotation == null) || (outputAnnotation.patterns() == null) || (outputAnnotation.patterns().length == 0)) {
             return false;
         }
-        String[] patterns = allowSystemOut.patterns();
+        String[] patterns = outputAnnotation.patterns();
+        for (String patternStr : patterns) {
+            Pattern pattern = Pattern.compile(patternStr);
+            Matcher matcher = pattern.matcher(log);
+            if (matcher.find()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    private boolean isAllowedLog(String log, Description description) {
+        //Debug level log in test case is accepted
+        if  (log.startsWith("[Log4j DEBUG:]")) {
+            return true;
+        }
+
+        AllowedOutput outputAnnotation = description.getAnnotation(AllowedOutput.class) ;
+        if ((outputAnnotation == null) || (outputAnnotation.patterns() == null) || (outputAnnotation.patterns().length == 0)) {
+            return false;
+        }
+        String[] patterns = outputAnnotation.patterns();
         for (String patternStr : patterns) {
             Pattern pattern = Pattern.compile(patternStr);
             Matcher matcher = pattern.matcher(log);
@@ -82,12 +110,26 @@ public class SystemOutWatcher extends TestWatcher {
 
     @Override
     protected void failed(Throwable e, Description description) {
+        String systemOutput = bos.toString();
         recoverOriginalOutput();
+        //Log4j output are displayed after system output
+        if (systemOutput.length() > 0) {
+            System.out.print(systemOutput);
+        }
+        String allLog = WatcherAppender.getLoggedMessages();
+        System.out.print(allLog);
     }
 
     @Override
     protected void skipped(AssumptionViolatedException e, Description description) {
+        String systemOutput = bos.toString();
         recoverOriginalOutput();
+        //Log4j output are displayed after system output
+        if (systemOutput.length() > 0) {
+            System.out.print(systemOutput);
+        }
+        String allLog = WatcherAppender.getLoggedMessages();
+        System.out.print(allLog);
     }
 
     @Override
@@ -97,6 +139,12 @@ public class SystemOutWatcher extends TestWatcher {
         System.setOut(tempOutput);
         System.setErr(tempOutput);
         WatcherAppender.clear();
+        org.apache.log4j.Logger rootLogger = LogManager.getRootLogger();
+        Appender consoleAppender = rootLogger.getAppender("CONSOLE");
+        if (consoleAppender != null) {
+            origConsoleAppender = consoleAppender;
+            LogManager.getRootLogger().removeAppender(consoleAppender);
+        }
     }
 
     @Override
@@ -109,5 +157,9 @@ public class SystemOutWatcher extends TestWatcher {
         System.out.flush();
         System.setOut(stdout);
         System.setErr(stderr);
+        org.apache.log4j.Logger rootLogger = LogManager.getRootLogger();
+        if ((rootLogger.getAppender("CONSOLE") == null) && (origConsoleAppender != null)) {
+            LogManager.getRootLogger().addAppender(origConsoleAppender);
+        }
     }
 }

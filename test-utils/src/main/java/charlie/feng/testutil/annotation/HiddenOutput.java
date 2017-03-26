@@ -11,8 +11,11 @@ import java.lang.annotation.Target;
  * refer to NoSystemOutTest for example.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD})
-public @interface AllowSystemOut {
-    String[] patterns();
+@Target({
+            ElementType.FIELD,
+            ElementType.METHOD
+        })
+public @interface HiddenOutput {
+        String[] patterns();
 }
 

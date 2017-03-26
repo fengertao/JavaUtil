@@ -11,6 +11,7 @@ public class WatcherAppender extends WriterAppender {
     private static volatile Writer testWriter;
     private static volatile Layout testLayout;
 
+
     public WatcherAppender() {
         testWriter = new StringWriter();
         instance = this;
