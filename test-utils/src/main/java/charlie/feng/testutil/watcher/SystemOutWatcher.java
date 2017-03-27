@@ -13,6 +13,8 @@ import org.junit.runner.Description;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,6 +40,8 @@ public class SystemOutWatcher extends TestWatcher {
 
     @Override
     protected void succeeded(Description description) {
+        boolean isUnexpectedOutput = false;
+        String unexpectedOutput = "";
         String systemOutput = bos.toString();
         recoverOriginalOutput();
         if (systemOutput.length() > 0) {
@@ -49,7 +53,8 @@ public class SystemOutWatcher extends TestWatcher {
                 } else if (isAllowedLog(output, description)) {
                     logger.info(output);
                 } else {
-                    Assert.fail("[Unexpected Output] " + output);
+                    isUnexpectedOutput = true;
+                    unexpectedOutput += "[Unexpected Log]" + output + "\n";
                 }
             }
         }
@@ -62,9 +67,17 @@ public class SystemOutWatcher extends TestWatcher {
             } else if (isAllowedLog(log, description)) {
                 //do nothing
             } else {
-                Assert.fail("[Unexpected Log] " + log);
+                isUnexpectedOutput = true;
+                unexpectedOutput += "[Unexpected Log]" + log + "\n";
             }
         }
+        // Known issue 1: Allowed system out will display twice
+        // Known issue 2: System out and log4j log are out of order.
+        // Both issues are acceptable, Because System out is existing in bad quality project only.
+        if (isUnexpectedOutput) {
+            Assert.fail(unexpectedOutput);
+        }
+
     }
 
     private boolean isHiddenLog(String log, Description description) {

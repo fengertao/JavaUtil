@@ -58,7 +58,18 @@ public class WatchOutputBaseTestTest extends WatchOutputBaseTest {
     @Test
     public void negTobeFailureTest() {
 //        Test will fail after uncomment this line
-        System.out.println("Hello, this is output");
+        System.out.println("Hello, this is output line1");
+        System.out.println("Hello, this is output line2");
+        return;
+    }
+
+    @Test
+    public void netTobeFailureMultiOutoutTest() {
+//        Test will fail after uncomment this line
+        System.out.println("Hello, this is output line1");
+        System.out.println("Hello, this is output line2");
+        logger.info("Info level message line1");
+        logger.info("Info level message line2");
         return;
     }
 
