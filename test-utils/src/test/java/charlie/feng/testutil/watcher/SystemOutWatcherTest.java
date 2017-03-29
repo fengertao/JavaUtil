@@ -6,9 +6,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 
-/**
- * Created by jfeng1 on 2017/3/20.
- */
 public class SystemOutWatcherTest {
 
     @Rule

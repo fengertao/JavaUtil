@@ -10,9 +10,6 @@ import org.slf4j.Logger;
 
 import java.util.ArrayList;
 
-/**
- * Created by jfeng1 on 2017/3/20.
- */
 public class WithoutWatcherTest {
 
     @Test

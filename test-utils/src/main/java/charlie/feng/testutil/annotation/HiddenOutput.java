@@ -6,9 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Add @AllowSystemOut annatation will disable junit system out/err check.
- * refer to NoSystemOutWatcher for detail.
- * refer to NoSystemOutTest for example.
+ * Add @HiddenOutput annotation will hidden output from Junit test case, as long as those output match defined regex pattern.
+ * Output include (1) System.out (2) System.err (3) Log4j log
+ * refer to SystemOutWatcher for detail.
+ * refer to SystemOutWatcherTest and WatchOutputBaseTestTest for example.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({

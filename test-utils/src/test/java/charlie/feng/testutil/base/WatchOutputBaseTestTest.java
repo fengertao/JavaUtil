@@ -5,9 +5,6 @@ import charlie.feng.testutil.base.WatchOutputBaseTest;
 import charlie.feng.testutil.annotation.AllowedOutput;
 import org.junit.Test;
 
-/**
- * Created by jfeng1 on 2017/3/20.
- */
 public class WatchOutputBaseTestTest extends WatchOutputBaseTest {
 
     @Test

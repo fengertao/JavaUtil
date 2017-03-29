@@ -5,9 +5,6 @@ import charlie.feng.testutil.annotation.HiddenOutput;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created by jfeng1 on 2017/3/20.
- */
 public class WatchOutputBaseTestNegTest extends WatchOutputBaseTest {
 
     @Test

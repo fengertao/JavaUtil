@@ -28,7 +28,6 @@ import java.util.regex.Pattern;
  * Add @AllowSystemOut annotation will disable system out/err check.
  * <p>
  * *This class is not thread-safe. do not use this class if your project run junit in multi-thread.
- * <p>
  */
 public class SystemOutWatcher extends TestWatcher {
 
