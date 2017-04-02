@@ -43,6 +43,7 @@ public class SystemOutWatcher extends TestWatcher {
         String unexpectedOutput = "";
         String systemOutput = bos.toString();
         recoverOriginalOutput();
+
         if (systemOutput.length() > 0) {
             String[] outputs = systemOutput.split("\n|\r");
             for (String output : outputs) {
@@ -50,13 +51,14 @@ public class SystemOutWatcher extends TestWatcher {
                 } else if (isHiddenLog(output, description)) {
                     //do nothing and hidden the log
                 } else if (isAllowedLog(output, description)) {
-                    logger.info(output);
+                    System.out.println(output);
                 } else {
                     isUnexpectedOutput = true;
                     unexpectedOutput += "[Unexpected Log]" + output + "\n";
                 }
             }
         }
+
         String allLog = WatcherAppender.getLoggedMessages();
         String[] logs = allLog.split("\n|\r");
         for (String log : logs) {
@@ -64,19 +66,19 @@ public class SystemOutWatcher extends TestWatcher {
             } else if (isHiddenLog(log, description)) {
                 //do nothing and hidden the log
             } else if (isAllowedLog(log, description)) {
-                //do nothing
+                System.out.println(log);
             } else {
                 isUnexpectedOutput = true;
                 unexpectedOutput += "[Unexpected Log]" + log + "\n";
             }
         }
+
         // Known issue 1: Allowed system out will display twice
         // Known issue 2: System out and log4j log are out of order.
         // Both issues are acceptable, Because System out is existing in bad quality project only.
         if (isUnexpectedOutput) {
             Assert.fail(unexpectedOutput);
         }
-
     }
 
     private boolean isHiddenLog(String log, Description description) {
@@ -146,6 +148,7 @@ public class SystemOutWatcher extends TestWatcher {
 
     @Override
     protected void starting(Description description) {
+
         bos = new ByteArrayOutputStream();
         PrintStream tempOutput = new PrintStream(bos, true);
         System.setOut(tempOutput);
@@ -165,8 +168,8 @@ public class SystemOutWatcher extends TestWatcher {
     }
 
     protected void recoverOriginalOutput() {
-        System.err.flush();
         System.out.flush();
+        System.err.flush();
         System.setOut(stdout);
         System.setErr(stderr);
         org.apache.log4j.Logger rootLogger = LogManager.getRootLogger();

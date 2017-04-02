@@ -25,4 +25,20 @@
         </dependency>
     </dependencies>
 
+    <!-- In Jenkins server, test case randomly fail with only "Killed" error message
+    the reason is junit test case occusional system.exit() but surefire don't allow it.
+    And this test utils do not support multi thread test.
+    set the threadCount to 1 to avoid surefire run test in multi thread-->
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Xmx2048m</argLine>
+                    <threadCount>1</threadCount>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
