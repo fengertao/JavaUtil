@@ -32,13 +32,9 @@
     </plugins>
   </build>
 
+  <!-- dependencies needed by all sub module -->
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>compile</scope>
-    </dependency>
+
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
@@ -54,8 +50,17 @@
       <artifactId>commons-lang</artifactId>
       <version>2.2</version>
     </dependency>
+
+    <!-- test scope -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
+  <!-- dependencies may needed by some sub module -->
   <dependencyManagement>
     <dependencies>
       <dependency>
