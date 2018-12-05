@@ -67,7 +67,6 @@ public class TestPath {
             Path p1 = Paths.get("/home/Charlie/FileA");
             Path p2 = Paths.get("/home/Charlie/FILEA");
             assertNotEquals("In Linux, Path compare is case senstive", p1, p2);
-            assertEquals("Path to URI in Linux is file protocol", p1.toUri().toString(), "file:///home/Charlie/DANIEL/FileA");
 
         }
     }
