@@ -38,7 +38,8 @@ public class TestPath {
 
     @Test
     public void testEquals() throws IOException {
-        if (System.getProperty("sun.desktop").equals("windows")) {
+        String osType = System.getProperty("sun.desktop");
+        if (osType != null && osType.equals("windows")) {
             Path p1 = Paths.get("c:\\Users\\Daniel\\FILEA");
             Path p2 = Paths.get("C:\\Users\\DANIEL\\FileA");
             Path p3 = Paths.get("C:\\Users\\Daniel\\..\\Daniel\\FILEA");
