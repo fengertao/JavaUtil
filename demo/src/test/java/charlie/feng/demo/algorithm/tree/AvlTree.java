@@ -108,7 +108,7 @@ public class AvlTree {
             System.out.println("FindMin or FindMax error!");
 
         for (int i = 1; i < NUMS; i++)
-            if (((Integer) (t.find(new Integer(i)))) != i)
+            if (((Integer) (t.find(i))) != i)
                 System.out.println("FindSingleThread error1!");
     }
 

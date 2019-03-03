@@ -25,22 +25,22 @@ public class Unit extends PlainXML2TableByDom {
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
         Unit proc = new Unit();
-        proc.compositTagMap.put("UnitAIs", new Integer(6));
-        proc.compositTagMap.put("TerrainNatives", new Integer(4));
-        proc.compositTagMap.put("ReligionSpreads", new Integer(1));
-        proc.compositTagMap.put("GreatPeoples", new Integer(1));
-        proc.compositTagMap.put("NotUnitAIs", new Integer(2));
-        proc.compositTagMap.put("UnitCombatMods", new Integer(4));
-        proc.compositTagMap.put("PrereqBonuses", new Integer(4));
-        proc.compositTagMap.put("FreePromotions", new Integer(2));
-        proc.compositTagMap.put("TechTypes", new Integer(3));
-        proc.compositTagMap.put("Flavors", new Integer(1));
-        proc.compositTagMap.put("TerrainImpassables", new Integer(1));
-        proc.compositTagMap.put("FeatureDefenses", new Integer(1));
-        proc.compositTagMap.put("UnitClassAttackMods", new Integer(2));
-        proc.compositTagMap.put("UnitCombatMods", new Integer(2));
-        proc.compositTagMap.put("DomainMods", new Integer(1));
-        proc.compositTagMap.put("UnitClassUpgrades", new Integer(3));
+        proc.compositTagMap.put("UnitAIs", 6);
+        proc.compositTagMap.put("TerrainNatives", 4);
+        proc.compositTagMap.put("ReligionSpreads", 1);
+        proc.compositTagMap.put("GreatPeoples", 1);
+        proc.compositTagMap.put("NotUnitAIs", 2);
+        proc.compositTagMap.put("UnitCombatMods", 4);
+        proc.compositTagMap.put("PrereqBonuses", 4);
+        proc.compositTagMap.put("FreePromotions", 2);
+        proc.compositTagMap.put("TechTypes", 3);
+        proc.compositTagMap.put("Flavors", 1);
+        proc.compositTagMap.put("TerrainImpassables", 1);
+        proc.compositTagMap.put("FeatureDefenses", 1);
+        proc.compositTagMap.put("UnitClassAttackMods", 2);
+        proc.compositTagMap.put("UnitCombatMods", 2);
+        proc.compositTagMap.put("DomainMods", 1);
+        proc.compositTagMap.put("UnitClassUpgrades", 3);
         proc.escapeTagSet.add("UnitMeshGroups");
         proc.escapeTagSet.add("TerrainNatives");
         proc.escapeTagSet.add("FeatureNatives");

@@ -222,7 +222,7 @@ public abstract class PlainXML2TableByDom extends PlainXML2Table {
     public void createTable() throws SQLException {
         String createTableSql = "create table " + tableName + "( ";
         for (int i = 1; i <= colSn; i++) {
-            Integer columnSn = new Integer(i);
+            Integer columnSn = i;
 //			String columnDesc = (String)columnSnMap.get(columnSn);
 //			Column column = (Column)columnMap.get(columnDesc);
             createTableSql += "COL" + i;

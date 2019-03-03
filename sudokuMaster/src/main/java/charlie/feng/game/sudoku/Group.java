@@ -10,7 +10,7 @@ public class Group {
 
     static {
         for (int i = 1; i <= 9; i++) {
-            expectedSet.add(new Integer(i));
+            expectedSet.add(i);
         }
     }
 

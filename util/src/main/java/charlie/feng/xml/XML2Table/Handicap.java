@@ -25,9 +25,9 @@ public class Handicap extends PlainXML2TableByDom {
 
     public static void main(String[] args) throws Exception {
         Handicap proc = new Handicap();
-        proc.compositTagMap.put("Goodies", new Integer(20));
-        proc.compositTagMap.put("FreeTechs", new Integer(4));
-        proc.compositTagMap.put("AIFreeTechs", new Integer(4));
+        proc.compositTagMap.put("Goodies", 20);
+        proc.compositTagMap.put("FreeTechs", 4);
+        proc.compositTagMap.put("AIFreeTechs", 4);
 //		proc.escapeTagSet.add("DiplomacyIntroMusicPeace");
         proc.recordTag = "HandicapInfo";
         proc.tableName = "Handicap";

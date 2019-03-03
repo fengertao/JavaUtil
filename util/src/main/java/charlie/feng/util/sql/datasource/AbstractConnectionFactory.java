@@ -48,8 +48,8 @@ public abstract class AbstractConnectionFactory {
             String dbname = (String) enum1.nextElement();
             String classname = (String) rb.getString(dbname);
             try {
-                Class cls = Class.forName(classname);
-                ((AbstractConnectionFactory) cls.newInstance()).initDriver();
+                Class<AbstractConnectionFactory> cls = (Class<AbstractConnectionFactory>)Class.forName(classname);
+                cls.getConstructor().newInstance().initDriver();
                 System.out.println("JDBC Driver for " + dbname + " initialized.");
 
             } catch (Exception e) {

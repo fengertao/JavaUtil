@@ -25,9 +25,9 @@ public class Technology extends PlainXML2TableByDom {
 
     public static void main(String[] args) throws Exception {
         Technology proc = new Technology();
-        proc.compositTagMap.put("Flavors", new Integer(7));
-        proc.compositTagMap.put("OrPreReqs", new Integer(3));
-        proc.compositTagMap.put("AndPreReqs", new Integer(2));
+        proc.compositTagMap.put("Flavors", 7);
+        proc.compositTagMap.put("OrPreReqs", 3);
+        proc.compositTagMap.put("AndPreReqs", 2);
         proc.escapeTagSet.add("Help");
         proc.escapeTagSet.add("DomainExtraMoves");
         proc.escapeTagSet.add("CommerceFlexible");

@@ -26,15 +26,15 @@ public class LeaderChar2Table extends PlainXML2TableBySax {
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
         LeaderChar2Table lct = new LeaderChar2Table();
-        lct.compositTagMap.put("Traits", new Integer(2));
-        lct.compositTagMap.put("Flavors", new Integer(2));
-        lct.compositTagMap.put("ContactRands", new Integer(14));
-        lct.compositTagMap.put("ContactDelays", new Integer(14));
-        lct.compositTagMap.put("MemoryDecays", new Integer(17));
-        lct.compositTagMap.put("MemoryAttitudePercents", new Integer(23));
-        lct.compositTagMap.put("NoWarAttitudeProbs", new Integer(4));
-        lct.compositTagMap.put("UnitAIWeightModifiers", new Integer(1));
-        lct.compositTagMap.put("ImprovementWeightModifiers", new Integer(2));
+        lct.compositTagMap.put("Traits", 2);
+        lct.compositTagMap.put("Flavors", 2);
+        lct.compositTagMap.put("ContactRands", 14);
+        lct.compositTagMap.put("ContactDelays", 14);
+        lct.compositTagMap.put("MemoryDecays", 17);
+        lct.compositTagMap.put("MemoryAttitudePercents", 23);
+        lct.compositTagMap.put("NoWarAttitudeProbs", 4);
+        lct.compositTagMap.put("UnitAIWeightModifiers", 1);
+        lct.compositTagMap.put("ImprovementWeightModifiers", 2);
         lct.escapeTagSet.add("DiplomacyIntroMusicPeace");
         lct.escapeTagSet.add("DiplomacyMusicPeace");
         lct.escapeTagSet.add("DiplomacyIntroMusicWar");

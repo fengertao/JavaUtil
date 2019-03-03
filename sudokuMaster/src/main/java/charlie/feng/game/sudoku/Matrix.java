@@ -69,7 +69,7 @@ public class Matrix {
                 if (sValue.equals("")) {
                     iValue = null;
                 } else {
-                    iValue = new Integer(sValue);
+                    iValue = Integer.valueOf(sValue);
                     cells[r][c].setValue(iValue);
                 }
             }

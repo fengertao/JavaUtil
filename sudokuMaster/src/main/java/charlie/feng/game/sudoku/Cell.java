@@ -65,7 +65,7 @@ public class Cell {
     }
 
     public void birth(int iValue, String LowLevelMethod) {
-        value = new Integer(iValue);
+        value = iValue;
         if (rowId == 5 && columnId == 7) {
         }
         for (int k2 = 0; k2 < 9; k2++) {
