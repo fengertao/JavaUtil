@@ -61,7 +61,8 @@
                 <!-- questionToBlogMaster, seems error:=910070080004900020300000000000000002000000100000800300000000068002500004000420900-->
                 <!-- (20~30min 4151554541):=010000052204000397070302014007060200000509100006020900080407520705000401040000730 -->
                 <!-- (Champion test):= 000750000030048020100000006040000008790000031200000070500000007080320040000069000 -->
-
+                <h4>&nbsp;</h4>
+                <h4>Please input matrix into below inputbox, "0" stand for empty cell. Click "Submit" for auto resolve.</h4>
                 <input type="text" name="all"
                        value="010000052204000397070302014007060200000509100006020900080407520705000401040000730"
                        onblur="splitAll(this.value)" size=100 maxlength=81>

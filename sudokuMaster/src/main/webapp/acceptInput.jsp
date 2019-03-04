@@ -37,7 +37,7 @@
     <Table>
         <TR>
             <TD colspan="9">
-                <%=matrix.result %>
+                <%=matrix.result %> <a href="input.jsp"> Another Game?</a>
             </TD>
         </TR>
         <TR>
