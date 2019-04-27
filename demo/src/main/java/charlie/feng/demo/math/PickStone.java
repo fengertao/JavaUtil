@@ -10,9 +10,9 @@ public class PickStone {
 
     public static void main(String[] args) {
         int[] choices = new int[NUMBER_CHOICE];
-        for (choices[0] = 1; choices[0]<=MAX_STONE_PER_PICK; choices[0]++ ){
-            for (choices[1] = choices[0]+1; choices[1]<=MAX_STONE_PER_PICK; choices[1]++) {
-                for (choices[2] = choices[1]+1; choices[2]<=MAX_STONE_PER_PICK; choices[2]++) {
+        for (choices[0] = 1; choices[0] <= MAX_STONE_PER_PICK; choices[0]++) {
+            for (choices[1] = choices[0] + 1; choices[1] <= MAX_STONE_PER_PICK; choices[1]++) {
+                for (choices[2] = choices[1] + 1; choices[2] <= MAX_STONE_PER_PICK; choices[2]++) {
                     int loopLength = calculateLoopLength(choices);
                     System.out.printf(" %2d %2d %2d: %3d\n", choices[0], choices[1], choices[2], loopLength);
                 }
@@ -21,31 +21,22 @@ public class PickStone {
     }
 
     public static int calculateLoopLength(int[] choices) {
-        // if successfulZone[i] equals true, it means with so many stone left, next player will win the game.
-        // if successfulZone[i] equals false, it means with so many stone left, next player will lose the game.
-        Boolean[] successfulZone= new Boolean[TRY_STONES];
-        for (int stoneLeft = 0; stoneLeft < TRY_STONES; stoneLeft++ ) {
-            if (stoneLeft < choices[0]) {
-                successfulZone[stoneLeft] = false;
-                continue;
-            } else if (stoneLeft == choices[0]) {
-                successfulZone[stoneLeft] = true;
-                continue;
-            }
-            successfulZone[stoneLeft] = false;
+        // successfulZone[i] equals true means if current player left i stones, he will win the game
+        Boolean[] successfulZone = new Boolean[TRY_STONES];
+        for (int stoneLeft = 0; stoneLeft < TRY_STONES; stoneLeft++) {
+            successfulZone[stoneLeft] = true;
             for (int iChoice = 0; iChoice < choices.length; iChoice++) {
                 if ((stoneLeft - choices[iChoice]) >= 0) {
-                    if (successfulZone[stoneLeft - choices[iChoice]] == false ) {
-                        successfulZone[stoneLeft] = true;
+                    if (successfulZone[stoneLeft - choices[iChoice]] == true) {
+                        successfulZone[stoneLeft] = false;
                         break;
                     }
                 }
             }
         }
-
         /* Uncomment below lines for debug successful zone
         for (int i = 0 ; i< TRY_STONES; i++  ) {
-            System.out.print(successfulZone[i] ? 1 : 0);
+            System.out.print(successfulZone[i] ? "W" : "L");
         }
         */
         return getLoopLength(successfulZone, choices);
@@ -54,17 +45,18 @@ public class PickStone {
     /**
      * In a precalculated successfulZone, search a loop pattern and return length of loop.
      * Some Leading steps need to be skipped
+     *
      * @param successfulZone precalculated successful zone
-     * @param steps step array.
+     * @param choices        choice array.
      * @return
      */
     public static int getLoopLength(Boolean[] successfulZone, int[] choices) {
         // We don't know how many leading steps to be skip, as least bigger than sum of steps * 5.
-        int stepsToSkip = Arrays.stream(choices).reduce((i, j)-> i+j).getAsInt() * 5;
+        int stepsToSkip = Arrays.stream(choices).reduce((i, j) -> i + j).getAsInt() * 5;
 
-        for (int testLoopLength = 1; testLoopLength <= TRY_STONES / 2; testLoopLength++ ) {
+        for (int testLoopLength = 1; testLoopLength <= TRY_STONES / 2; testLoopLength++) {
             boolean invalidLoop = false;
-            for (int indexInLoop = stepsToSkip; indexInLoop < stepsToSkip + testLoopLength; indexInLoop ++ ) {
+            for (int indexInLoop = stepsToSkip; indexInLoop < stepsToSkip + testLoopLength; indexInLoop++) {
                 Boolean currentZone = successfulZone[indexInLoop];
                 int currentLoop = 1;
                 while (currentLoop * testLoopLength + indexInLoop < TRY_STONES) {
