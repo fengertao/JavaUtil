@@ -83,7 +83,7 @@ public class AvlTree {
 
     /**
      * Double rotate binary tree node: first right child with its left child;
-     * then node k1 with new right child. For AVL trees, this is a double
+     * then node k1 with new right child. For AVL tCompletableFuturerees, this is a double
      * rotation for case 3. Update heights, then return new root.
      */
     private static AvlNode doubleWithRightChild(AvlNode k1) {

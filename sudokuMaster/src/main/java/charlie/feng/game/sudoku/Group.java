@@ -1,7 +1,6 @@
 package charlie.feng.game.sudoku;
 
-import org.apache.commons.lang.ArrayUtils;
-
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -66,7 +65,7 @@ public class Group {
     public void removeNumber(int k, Cell[] excludeCells) {
         for (int i = 0; i < 9; i++) {
             Cell currentCell = cells[i];
-            if (ArrayUtils.contains(excludeCells, currentCell)) {
+            if (Arrays.stream(excludeCells).filter(cell -> {return cell.equals(currentCell);}).count() > 0) {
                 continue;
             } else {
                 if ((currentCell.value == null) && (currentCell.candidates[k - 1].getValue())) {

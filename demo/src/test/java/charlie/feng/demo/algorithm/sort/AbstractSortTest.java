@@ -1,7 +1,8 @@
 package charlie.feng.demo.algorithm.sort;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public abstract class AbstractSortTest<T> {
 
@@ -21,8 +22,7 @@ public abstract class AbstractSortTest<T> {
         AbstractSort<Integer> sort = new QuickSort<Integer>();
         Integer[] output = sort.sort(input);
         print(output);
-
-        Assert.assertTrue(isValidated(output, correctOutput));
+        Assertions.assertTrue(isValidated(output, correctOutput));
     }
 
     @Test
@@ -41,7 +41,7 @@ public abstract class AbstractSortTest<T> {
             Integer[] output = sort.sort(input);
             print(output);
 
-            Assert.assertTrue(isOrdered(output));
+            Assertions.assertTrue(isOrdered(output));
 
         }
     }
