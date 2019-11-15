@@ -146,8 +146,6 @@
   <modules>
     <module>util</module>
     <module>demo</module>
-    <module>eeutil</module>
-    <module>springstudy</module>
     <module>sudokuMaster</module>
     <module>test-utils</module>
   </modules>
