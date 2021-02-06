@@ -16,7 +16,7 @@
 
     <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
     <tomcat-maven-plugin>1.1</tomcat-maven-plugin>
-    <java.version>13</java.version>
+    <java.version>15</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -131,7 +131,12 @@
         <artifactId>guava</artifactId>
         <version>29.0-jre</version>
       </dependency>
-
+      <!-- for combinations and permutations -->
+      <dependency>
+        <groupId>com.github.dpaukov</groupId>
+        <artifactId>combinatoricslib3</artifactId>
+        <version>3.3.0</version>
+      </dependency>
       <!-- test scope -->
       <dependency>
         <groupId>org.junit.jupiter</groupId>
@@ -145,7 +150,7 @@
   <modules>
     <module>util</module>
     <module>demo</module>
-    <!-- sodokuMaster in project is out of maintenance -->
+    <!-- sudokuMaster in project is out of maintenance -->
     <!-- new version in https://github.com/fengertao/sudokumasterserv -->
     <!--<module>sudokuMaster</module>-->
     <module>test-utils</module>

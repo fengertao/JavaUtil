@@ -6,7 +6,6 @@
     <artifactId>parent</artifactId>
     <version>${revision}</version>
   </parent>
-  <groupId>charlie.feng</groupId>
   <artifactId>demo</artifactId>
   <packaging>jar</packaging>
 
@@ -61,6 +60,10 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.dpaukov</groupId>
+      <artifactId>combinatoricslib3</artifactId>
     </dependency>
     <!-- test scope -->
     <dependency>
