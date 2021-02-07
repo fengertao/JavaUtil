@@ -1,8 +1,9 @@
 package charlie.feng.demo.math;
 
 import org.paukov.combinatorics3.Generator;
+
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,11 +17,10 @@ import java.util.stream.Collectors;
 public class NumberOfLuckyBallSeq {
     public static void main(String[] args) {
         Map<String, Integer> ballMap = Map.of("r", 4, "g", 2, "b", 5);
-        Collection<String> balls = new ArrayList<>();
-        ballMap.forEach((color, count) -> {
-            for (int i = 0; i < count; i++) {
-                balls.add(color);
-            }});
+
+        List<String> balls = ballMap.entrySet()
+                .stream()
+                .collect(ArrayList::new, (list, ele) -> list.addAll(Collections.nCopies(ele.getValue(), ele.getKey())), List::addAll);
         List<List<String>> result = Generator.permutation(balls)
                 .simple()
                 .stream()
@@ -30,6 +30,6 @@ public class NumberOfLuckyBallSeq {
     }
 
     static boolean isLuckSeq(List<String> seq) {
-        return String.join("",seq).contains("rgb");
+        return String.join("", seq).contains("rgb");
     }
 }
