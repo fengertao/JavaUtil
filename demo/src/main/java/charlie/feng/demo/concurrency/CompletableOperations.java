@@ -7,7 +7,7 @@ import static charlie.feng.demo.concurrency.CompletableUtilities.voidr;
 
 public class CompletableOperations {
     static CompletableFuture<Integer> cfi(int i) {
-        return CompletableFuture.completedFuture(Integer.valueOf(i));
+        return CompletableFuture.completedFuture(i);
     }
 
     public static void main(String[] args) {

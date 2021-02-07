@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  * <p>
  * 通项公式:
  * solutions = (C(2n-1, n)^2 - C(2n-1, n)*C(2n-2)*2)*2
- *
+ * <p>
  * n = 2    result = 6
  * n = 3    result = 40
  * n = 4    result = 350

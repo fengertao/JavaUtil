@@ -39,7 +39,7 @@ final class NumSpellerSW extends NumSpeller__ {
         NumSpeller__.contraccion_decenas = "tio|ti";
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         NumSpellerSW c = new NumSpellerSW();
         System.out.println(c.leer("123456789012"));
     }

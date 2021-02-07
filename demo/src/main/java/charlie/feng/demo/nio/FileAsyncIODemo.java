@@ -5,6 +5,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousFileChannel;
 import java.nio.channels.CompletionHandler;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.concurrent.Future;
@@ -20,7 +21,7 @@ public class FileAsyncIODemo {
 
     private static void readWithFuture() throws Exception {
         Path file = FileSystems.getDefault().getPath(System.getProperty("user.home")).resolve(".bashrc");
-        try (AsynchronousFileChannel afc = AsynchronousFileChannel.open(file, READ);) {
+        try (AsynchronousFileChannel afc = AsynchronousFileChannel.open(file, READ)) {
             int fileSize = (int) afc.size();
             ByteBuffer buffer = ByteBuffer.allocate(fileSize);
             Future<Integer> future = afc.read(buffer, 0);
@@ -28,13 +29,12 @@ public class FileAsyncIODemo {
             // complete.
             future.get();
             outputByteBuffer(buffer);
-            afc.close();
         }
     }
 
     public static void outputByteBuffer(ByteBuffer buffer) {
         byte[] byteData = buffer.array();
-        Charset cs = Charset.forName("UTF-8");
+        Charset cs = StandardCharsets.UTF_8;
         String data = new String(byteData, cs);
         System.out.println(data);
     }

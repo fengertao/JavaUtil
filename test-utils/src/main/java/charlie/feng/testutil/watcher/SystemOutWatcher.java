@@ -3,7 +3,6 @@ package charlie.feng.testutil.watcher;
 import charlie.feng.testutil.annotation.AllowedOutput;
 import charlie.feng.testutil.annotation.HiddenOutput;
 import org.apache.log4j.Appender;
-import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -13,8 +12,6 @@ import org.junit.runner.Description;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,12 +37,12 @@ public class SystemOutWatcher extends TestWatcher {
     @Override
     protected void succeeded(Description description) {
         boolean isUnexpectedOutput = false;
-        String unexpectedOutput = "";
+        StringBuilder unexpectedOutput = new StringBuilder();
         String systemOutput = bos.toString();
         recoverOriginalOutput();
 
         if (systemOutput.length() > 0) {
-            String[] outputs = systemOutput.split("\n|\r");
+            String[] outputs = systemOutput.split("[\n\r]");
             for (String output : outputs) {
                 if (output.length() == 0) {
                 } else if (isHiddenLog(output, description)) {
@@ -54,13 +51,13 @@ public class SystemOutWatcher extends TestWatcher {
                     System.out.println(output);
                 } else {
                     isUnexpectedOutput = true;
-                    unexpectedOutput += "[Unexpected Log]" + output + "\n";
+                    unexpectedOutput.append("[Unexpected Log]").append(output).append("\n");
                 }
             }
         }
 
         String allLog = WatcherAppender.getLoggedMessages();
-        String[] logs = allLog.split("\n|\r");
+        String[] logs = allLog.split("[\n\r]");
         for (String log : logs) {
             if (log.length() == 0) {
             } else if (isHiddenLog(log, description)) {
@@ -69,7 +66,7 @@ public class SystemOutWatcher extends TestWatcher {
                 System.out.println(log);
             } else {
                 isUnexpectedOutput = true;
-                unexpectedOutput += "[Unexpected Log]" + log + "\n";
+                unexpectedOutput.append("[Unexpected Log]").append(log).append("\n");
             }
         }
 
@@ -77,17 +74,17 @@ public class SystemOutWatcher extends TestWatcher {
         // Known issue 2: System out and log4j log are out of order.
         // Both issues are acceptable, Because System out is existing in bad quality project only.
         if (isUnexpectedOutput) {
-            Assert.fail(unexpectedOutput);
+            Assert.fail(unexpectedOutput.toString());
         }
     }
 
     private boolean isHiddenLog(String log, Description description) {
         //SLF4J warning can be hidden
-        if  (log.startsWith("SLF4J:")) {
+        if (log.startsWith("SLF4J:")) {
             return true;
         }
 
-        HiddenOutput outputAnnotation = description.getAnnotation(HiddenOutput.class) ;
+        HiddenOutput outputAnnotation = description.getAnnotation(HiddenOutput.class);
         if ((outputAnnotation == null) || (outputAnnotation.patterns() == null) || (outputAnnotation.patterns().length == 0)) {
             return false;
         }
@@ -101,13 +98,14 @@ public class SystemOutWatcher extends TestWatcher {
         }
         return false;
     }
+
     private boolean isAllowedLog(String log, Description description) {
         //Debug level log in test case is accepted
-        if  (log.startsWith("[Log4j DEBUG:]")) {
+        if (log.startsWith("[Log4j DEBUG:]")) {
             return true;
         }
 
-        AllowedOutput outputAnnotation = description.getAnnotation(AllowedOutput.class) ;
+        AllowedOutput outputAnnotation = description.getAnnotation(AllowedOutput.class);
         if ((outputAnnotation == null) || (outputAnnotation.patterns() == null) || (outputAnnotation.patterns().length == 0)) {
             return false;
         }

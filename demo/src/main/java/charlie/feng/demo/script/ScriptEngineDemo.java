@@ -18,8 +18,8 @@ public class ScriptEngineDemo {
         scp.append("}");
         System.out.println(scp.toString());
         engine.eval(scp.toString());
-        //        Object[] params={127L,127L}; //return true in both 1.7 and 1.8
-        //        Object[] params={128l,128l}; //reture false in 1.8
+        //Object[] params={127L,127L}; return true in both 1.7 and 1.8
+        //Object[] params={128l,128l}; return false in 1.8
         Object[] params = {12345678L, 12345678L};
         System.out.println(((Invocable) engine).invokeFunction("foo", params));
 

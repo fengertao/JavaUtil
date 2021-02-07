@@ -3,10 +3,18 @@ package charlie.feng.demo.nio;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
 
 import static com.sun.nio.file.ExtendedWatchEventModifier.FILE_TREE;
-import static java.nio.file.StandardWatchEventKinds.*;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
+import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
 public class WatchServiceDemo {
 
@@ -29,11 +37,11 @@ public class WatchServiceDemo {
 
     @SuppressWarnings({"unchecked", "restriction"})
     /*
-	 * Watch the change on a directory
-	 * This code is work only on windows platform.
-	 * For linux platform, please refer to below example:
-	 * http://docs.oracle.com/javase/tutorial/essential/io/examples/WatchDir.java
-	 */
+     * Watch the change on a directory
+     * This code is work only on windows platform.
+     * For linux platform, please refer to below example:
+     * http://docs.oracle.com/javase/tutorial/essential/io/examples/WatchDir.java
+     */
     public static void watch() throws IOException {
         WatchService watcher = FileSystems.getDefault().newWatchService();
         WatchKey key = null;
@@ -46,15 +54,15 @@ public class WatchServiceDemo {
                 modifier = new WatchEvent.Modifier[0];
             }
             key = testDir.register(watcher, eventKinds, modifier);
-        } catch (IOException x) {
-            System.err.println(x);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
         for (; ; ) {
             try {
                 key = watcher.take();
-            } catch (InterruptedException e) {
-                System.out.println(e);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
                 return;
             }
 

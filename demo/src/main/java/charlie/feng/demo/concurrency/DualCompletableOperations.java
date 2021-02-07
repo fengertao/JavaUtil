@@ -35,15 +35,11 @@ public class DualCompletableOperations {
         }));
         join();
         init();
-        voidr(cfA.acceptEitherAsync(cfB, w -> {
-            System.out.println("acceptEither: " + w);
-        }));
+        voidr(cfA.acceptEitherAsync(cfB, w -> System.out.println("acceptEither: " + w)));
         join();
         init();
-        voidr(cfA.thenAcceptBothAsync(cfB, (w1, w2) -> {
-            System.out.println("thenAcceptBoth: "
-                    + w1 + ", " + w2);
-        }));
+        voidr(cfA.thenAcceptBothAsync(cfB, (w1, w2) -> System.out.println("thenAcceptBoth: "
+                + w1 + ", " + w2)));
         join();
         init();
         showr(cfA.thenCombineAsync(cfB, (w1, w2) -> {

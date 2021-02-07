@@ -9,21 +9,21 @@ package numspeller;
 class NumSpeller__ {
 
     static final int MAXIMO_NUMERO_DE_DIGITOS = 24;
-    protected static String periodo_singular[] = {
+    protected static String[] periodo_singular = {
             "one hundred", "one thousand", "one million", "one millard", "one billion", "one billard", "one trillion", "one trillard", "one quatrillion", "one quatrillard",
             "one quintillion", "one quintilliard"
     };
-    protected static String periodo_plural[] = {
+    protected static String[] periodo_plural = {
             "hundred", "thousand", "million", "millard", "billion", "billard", "trillion", "trillard", "quatrillion", "quatrillard",
             "quintillion", "quintilliard"
     };
-    protected static String centenas[] = {
+    protected static String[] centenas = {
             "", "one hundred", "two hundred", "three hundred", "four hundred", "five hundred", "six hundred", "seven hundred", "eight hundred", "nine hundred"
     };
-    protected static String decenas[] = {
+    protected static String[] decenas = {
             "", "ten", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"
     };
-    protected static String unidades[] = {
+    protected static String[] unidades = {
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
             "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
     };
@@ -59,14 +59,12 @@ class NumSpeller__ {
     protected static String contraccion3 = "";
     public int genero;
     int idioma;
+
     public NumSpeller__() {
     }
+
     public NumSpeller__(int idioma) {
         this();
-    }
-
-    public String version() {
-        return "1.0";
     }
 
     @SuppressWarnings("unused")
@@ -76,25 +74,22 @@ class NumSpeller__ {
         String resultado = "";
         cifra.trim();
         if (cifra.length() == 0) {
-            String _result = "ERROR: no se ha espoecificado una cifra";
-            return _result;
+            return "ERROR: no se ha espoecificado una cifra";
         }
-        String t = cifra;
-        if (t.length() > 24) {
-            String _result = "ERROR: La cifra no puede tener mas de " + Integer.toString(24) + " digitos";
-            return _result;
+        if (cifra.length() > 24) {
+            return "ERROR: La cifra no puede tener mas de " + 24 + " digitos";
         }
-        if (t.substring(0, 1).equals("-"))
+        if (cifra.charAt(0) == '-')
             resultado = signo_menos + " ";
-        resultado = resultado + leer_parte(parte_entera(t));
-        String s = parte_decimal(t);
-        if (s != "")
+        resultado = resultado + leer_parte(parte_entera(cifra));
+        String s = parte_decimal(cifra);
+        if (!s.equals(""))
             resultado = resultado + " " + separador_decimal + " " + leer_parte(s);
-        if (contraccion1 != "")
+        if (!contraccion1.equals(""))
             resultado = contraer(resultado, contraccion1);
-        if (contraccion2 != "")
+        if (!contraccion2.equals(""))
             resultado = contraer(resultado, contraccion2);
-        if (contraccion3 != "")
+        if (!contraccion3.equals(""))
             resultado = contraer(resultado, contraccion3);
         return resultado;
     }
@@ -106,8 +101,7 @@ class NumSpeller__ {
             p = s.indexOf(",");
         String _result;
         if (p >= 0) {
-            String t = s.substring(p + 1);
-            _result = t;
+            _result = s.substring(p + 1);
         } else {
             _result = "";
         }
@@ -134,7 +128,7 @@ class NumSpeller__ {
             _result = s;
             return _result;
         }
-        if (s != "")
+        if (!s.equals(""))
             s = s + y_centenas;
         try {
             if (unidades[n % 100].length() > 0) {
@@ -144,24 +138,24 @@ class NumSpeller__ {
             }
         } catch (ArrayIndexOutOfBoundsException _ex) {
         }
-        if (decenas[(n - c * 100 - n % 10) / 10] != "") {
+        if (!decenas[(n - c * 100 - n % 10) / 10].equals("")) {
             if (orden_decenas == 0) {
                 s = s + decenas[(n - c * 100 - n % 10) / 10];
                 if (n % 10 > 0) {
                     s = s + y_decenas + unidades[n % 10];
-                    if (contraccion_decenas != "")
+                    if (!contraccion_decenas.equals(""))
                         s = contraer(s, contraccion_decenas);
                 }
             } else if (n % 10 > 0) {
                 s = s + unidades[n % 10] + y_decenas + decenas[(n - c * 100 - n % 10) / 10];
-                if (contraccion_decenas != "")
+                if (!contraccion_decenas.equals(""))
                     s = contraer(s, contraccion_decenas);
             } else {
                 s = s + decenas[(n - c * 100 - n % 10) / 10];
             }
         } else {
             s = s + decenas[(n - c * 100 - n % 10) / 10 - 1] + y_decenas + unidades[10 + n % 10];
-            if (contraccion_decenas != "")
+            if (!contraccion_decenas.equals(""))
                 s = contraer(s, contraccion_decenas);
         }
         _result = s;
@@ -180,7 +174,7 @@ class NumSpeller__ {
         }
         s = leer_999(c);
         if (n <= 1) {
-            if (s.indexOf("%") >= 0)
+            if (s.contains("%"))
                 _result = sustituir(s, "%", " ");
             else
                 _result = s;
@@ -189,7 +183,7 @@ class NumSpeller__ {
         if (c == 1) {
             s = periodo_singular[n - 1];
             _result = s;
-        } else if (s.indexOf("%") >= 0)
+        } else if (s.contains("%"))
             _result = sustituir(s, "%", " " + periodo_plural[n - 1] + " ");
         else
             _result = s + " " + periodo_plural[n - 1];
@@ -197,14 +191,14 @@ class NumSpeller__ {
     }
 
     private String leer_parte(String s) {
-        int m[] = {
+        int[] m = {
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0
         };
         int l = 0;
         int i = 0;
         l = s.length();
-        String r = "";
+        String r;
         for (i = 0; i < 10; i++) {
             if (l >= 3) {
                 m[i] = Integer.parseInt(s.substring(l - 3, l));
@@ -218,8 +212,10 @@ class NumSpeller__ {
             break;
         }
 
+        StringBuilder rBuilder = new StringBuilder();
         for (l = i; l >= 1; l--)
-            r = r + miles_de(m[l - 1], l, i) + " ";
+            rBuilder.append(miles_de(m[l - 1], l, i)).append(" ");
+        r = rBuilder.toString();
 
         r.trim();
         return r;
@@ -227,7 +223,7 @@ class NumSpeller__ {
 
     private String parte_entera(String s) {
         int p = 0;
-        if (s.substring(0, 1).equals("-"))
+        if (s.charAt(0) == '-')
             s = s.substring(1);
         p = s.indexOf(".");
         if (p < 0)
@@ -245,10 +241,10 @@ class NumSpeller__ {
     }
 
     public String sustituir(String source, String search, String replace) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         int start = 0;
         for (int index = 0; (index = source.indexOf(search, start)) >= 0; ) {
-            result.append(source.substring(start, index));
+            result.append(source, start, index);
             result.append(replace);
             start = index + search.length();
         }

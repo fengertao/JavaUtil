@@ -1,8 +1,7 @@
 package charlie.feng.testutil.base;
 
-import charlie.feng.testutil.annotation.HiddenOutput;
-import charlie.feng.testutil.base.WatchOutputBaseTest;
 import charlie.feng.testutil.annotation.AllowedOutput;
+import charlie.feng.testutil.annotation.HiddenOutput;
 import org.junit.Test;
 
 public class WatchOutputBaseTestTest extends WatchOutputBaseTest {

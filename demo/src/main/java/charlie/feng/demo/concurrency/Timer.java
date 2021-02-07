@@ -1,12 +1,15 @@
 package charlie.feng.demo.concurrency;
 
-import static java.util.concurrent.TimeUnit.*;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
+
 public class Timer {
-    private long start = System.nanoTime();
+    private final long start = System.nanoTime();
+
     public long duration() {
         return NANOSECONDS.toMillis(
-            System.nanoTime() - start);
+                System.nanoTime() - start);
     }
+
     public static long duration(Runnable test) {
         Timer timer = new Timer();
         test.run();

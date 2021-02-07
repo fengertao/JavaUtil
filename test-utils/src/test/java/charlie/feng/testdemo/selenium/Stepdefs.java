@@ -1,6 +1,5 @@
 package charlie.feng.testdemo.selenium;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -17,6 +16,7 @@ public class Stepdefs {
 
     WebDriver driver = null;
 
+    @SuppressWarnings("CommentedOutCode")
     @Given("^open automationpractice$")
     public void open_automationpractice() throws Throwable {
 //        The driver can be download from https://github.com/mozilla/geckodriver

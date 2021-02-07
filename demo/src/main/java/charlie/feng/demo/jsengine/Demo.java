@@ -3,12 +3,10 @@ package charlie.feng.demo.jsengine;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class Demo {
-    public static void main(String[] args) throws ScriptException, FileNotFoundException, InterruptedException, Exception {
+    public static void main(String[] args) throws Exception {
         ScriptEngineManager factory = new ScriptEngineManager();
         ScriptEngine engine = factory.getEngineByName("JavaScript");
         engine.eval("print('Hellow World!')");
@@ -32,7 +30,7 @@ public class Demo {
         // js and Java interface call
 
         Object obj = inv.invokeFunction("max", "1", "0");
-        if ("1" == obj.toString()) {
+        if ("1".equals(obj.toString())) {
             System.out.println(obj.toString());
         } else {
             throw new Exception("asset failure");
@@ -60,14 +58,6 @@ public class Demo {
         script += "if(email.test(str)){println('it is an email')}" + "else if(ip.test(str)){println('it is an ip address')}" + "else{println('I don\\'t know')}";
         engine.put("str", "10.10");
         engine.eval(script);
-
-        // Compilable compilable = (Compilable) engine;
-        // CompiledScript compiled = compilable.compile(script);
-        // compiled.eval();
-
-        // Compilable compilable = (Compilable) engine;
-        // CompiledScript compiled = compilable.compile(script);
-        // compiled.eval();
 
     }
 }

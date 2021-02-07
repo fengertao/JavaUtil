@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.channels.SeekableByteChannel;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,7 +20,7 @@ public class FileReadDemo {
 
     private static void demo1() {
         Path file = FileSystems.getDefault().getPath(System.getProperty("user.home")).resolve(".bashrc");
-        Charset charset = Charset.forName("US-ASCII");
+        Charset charset = StandardCharsets.US_ASCII;
         try (BufferedReader reader = Files.newBufferedReader(file, charset)) {
             String line = null;
             while ((line = reader.readLine()) != null) {

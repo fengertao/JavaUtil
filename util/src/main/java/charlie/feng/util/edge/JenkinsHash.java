@@ -64,7 +64,7 @@ public class JenkinsHash {
      * Convert 4 bytes from the buffer at offset into a long value.
      */
     private long fourByteToLong(byte[] bytes, int offset) {
-        return (byteToLong(bytes[offset + 0])
+        return (byteToLong(bytes[offset])
                 + (byteToLong(bytes[offset + 1]) << 8)
                 + (byteToLong(bytes[offset + 2]) << 16)
                 + (byteToLong(bytes[offset + 3]) << 24));
@@ -160,7 +160,7 @@ public class JenkinsHash {
             case 2:
                 a = add(a, leftShift(byteToLong(buffer[pos + 1]), 8));
             case 1:
-                a = add(a, byteToLong(buffer[pos + 0]));
+                a = add(a, byteToLong(buffer[pos]));
                 // case 0: nothing left to add
         }
         hashMix();

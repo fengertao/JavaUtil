@@ -8,10 +8,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 public class GetChannel {
-    private static String name = "data.txt";
     private static final int BSIZE = 1024;
 
     public static void main(String[] args) {
+        String name = "data.txt";
         try (
                 FileChannel fc = new FileOutputStream(name)
                         .getChannel()

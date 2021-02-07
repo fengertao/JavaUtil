@@ -65,7 +65,9 @@ public class Group {
     public void removeNumber(int k, Cell[] excludeCells) {
         for (int i = 0; i < 9; i++) {
             Cell currentCell = cells[i];
-            if (Arrays.stream(excludeCells).filter(cell -> {return cell.equals(currentCell);}).count() > 0) {
+            if (Arrays.stream(excludeCells).filter(cell -> {
+                return cell.equals(currentCell);
+            }).count() > 0) {
                 continue;
             } else {
                 if ((currentCell.value == null) && (currentCell.candidates[k - 1].getValue())) {

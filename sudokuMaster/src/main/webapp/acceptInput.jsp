@@ -26,6 +26,7 @@
         function showCandidate(value) {
             document.all["candidate"].value = value;
         }
+
         function clearCandidate(value) {
             document.all["candidate"].value = "";
         }
@@ -59,18 +60,18 @@
                     Integer iValue = (matrix.cells[r][c]).getValue();
                     String sValue = "";
                     if (iValue != null) sValue = iValue.toString();
-                    String candidateStr = "";
+                    StringBuilder candidateStr = new StringBuilder();
                     TraceableBoolean[] flag = matrix.cells[r][c].candidates;
                     for (int k = 0; k < 9; k++) {
                         if (flag[k].getValue()) {
-                            candidateStr += k + 1;
+                            candidateStr.append(k + 1);
                         } else {
-                            candidateStr += " ";
+                            candidateStr.append(" ");
                         }
                     }
                 %>
                 <input type="text" name="<%= "cell"+r+c %>" value="<%=sValue%>" size="1" maxlength="1"
-                       onmouseover='showCandidate("<%=candidateStr %>")' onmouseout="clearCandidate()">
+                       onmouseover='showCandidate("<%=candidateStr.toString() %>")' onmouseout="clearCandidate()">
             </TD>
             <% } %>
         </TR>

@@ -19,8 +19,8 @@ public class TransferTo {
                         args[1]).getChannel()
         ) {
             in.transferTo(0, in.size(), out);
-        // Or:
-        // out.transferFrom(in, 0, in.size());
+            // Another Implementation:
+            // out.transferFrom(in, 0, in.size());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

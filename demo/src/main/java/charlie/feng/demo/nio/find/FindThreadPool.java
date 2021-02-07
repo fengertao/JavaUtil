@@ -18,7 +18,6 @@ public class FindThreadPool {
     public static void main(String[] args) throws Exception {
         start = System.currentTimeMillis();
         doFind();
-        ;
         while (((ThreadPoolExecutor) es).getActiveCount() > 0) {
             Thread.yield();
         }

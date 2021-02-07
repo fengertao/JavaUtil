@@ -56,11 +56,7 @@ public class DirectoryListDemo {
                 assert filenameList.contains("My Documents");
             }
 
-            DirectoryStream.Filter<Path> dirFilter = new DirectoryStream.Filter<Path>() {
-                public boolean accept(Path file) throws IOException {
-                    return (Files.isDirectory(file));
-                }
-            };
+            DirectoryStream.Filter<Path> dirFilter = file -> (Files.isDirectory(file));
             try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, dirFilter)) {
                 List<String> filenameList = new ArrayList<>();
                 for (Path file : stream) {

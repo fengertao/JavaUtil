@@ -38,7 +38,7 @@ public class FileAttributeDemo {
         long used = (store.getTotalSpace() -
                 store.getUnallocatedSpace()) / 1024;
         long avail = store.getUsableSpace() / 1024;
-        System.out.println("");
+        System.out.println();
         System.out.println("total: " + total);
         System.out.println("used: " + used);
         System.out.println("avail: " + avail);

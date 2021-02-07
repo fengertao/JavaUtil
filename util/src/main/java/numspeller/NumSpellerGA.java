@@ -37,7 +37,7 @@ final class NumSpellerGA extends NumSpeller__ {
         NumSpeller__.orden_decenas = 0;
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         NumSpellerGA c = new NumSpellerGA();
         System.out.println(c.leer("123456789012"));
     }

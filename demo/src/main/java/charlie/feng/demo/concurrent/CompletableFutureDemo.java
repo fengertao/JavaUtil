@@ -7,7 +7,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class CompletableFutureDemo {
@@ -18,12 +20,14 @@ public class CompletableFutureDemo {
         applyVsThenCompose();
     }
 
-    static CompletableFuture<Integer> add100(Integer i){
+    static CompletableFuture<Integer> add100(Integer i) {
         return CompletableFuture.supplyAsync(() -> 100 + i);
     }
-    static CompletableFuture<Integer> add1000(Integer i){
+
+    static CompletableFuture<Integer> add1000(Integer i) {
         return CompletableFuture.supplyAsync(() -> 1000 + i);
     }
+
     static void applyVsThenCompose() {
 
         CompletableFuture<Integer> applyResult = CompletableFuture.completedFuture(0).thenApply(s -> s + 1).thenApply(s -> s + 10);
@@ -32,7 +36,7 @@ public class CompletableFutureDemo {
         CompletableFuture<Integer> thenComposeResult = CompletableFuture.completedFuture(0).thenCompose(CompletableFutureDemo::add100).thenCompose(CompletableFutureDemo::add1000);
         assertEquals(thenComposeResult.join(), 1100);
 
-        CompletableFuture<Integer> whenCompleteResult = CompletableFuture.completedFuture(8).whenComplete((s, ex) -> {logger.info("whenComplete1:"+s);}).whenComplete((s, ex) -> {logger.info("whenComplete2:"+s);});
+        CompletableFuture<Integer> whenCompleteResult = CompletableFuture.completedFuture(8).whenComplete((s, ex) -> logger.info("whenComplete1:" + s)).whenComplete((s, ex) -> logger.info("whenComplete2:" + s));
     }
 
     static void completeExceptionallyExample() {

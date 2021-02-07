@@ -1,7 +1,11 @@
 package charlie.feng.demo.nio;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.FileSystems;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
 import static java.nio.file.FileVisitResult.CONTINUE;
@@ -46,8 +50,8 @@ class PrintFileNameVisitor extends SimpleFileVisitor<Path> {
     // and an error occurs, an IOException
     // is thrown.
     @Override
-    public FileVisitResult visitFileFailed(Path file, IOException exc) {
-        System.err.println(exc);
+    public FileVisitResult visitFileFailed(Path file, IOException ex) {
+        ex.printStackTrace();
         return CONTINUE;
     }
 }

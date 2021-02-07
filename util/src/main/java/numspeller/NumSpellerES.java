@@ -38,7 +38,7 @@ final class NumSpellerES extends NumSpeller__ {
         NumSpeller__.signo_menos = "menos";
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         NumSpellerES c = new NumSpellerES();
         System.out.println(c.leer("123456789012"));
     }

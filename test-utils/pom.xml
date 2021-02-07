@@ -4,7 +4,7 @@
     <parent>
         <groupId>charlie.feng</groupId>
         <artifactId>parent</artifactId>
-	<relativePath>../pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
         <version>${revision}</version>
     </parent>
     <artifactId>test-utils</artifactId>

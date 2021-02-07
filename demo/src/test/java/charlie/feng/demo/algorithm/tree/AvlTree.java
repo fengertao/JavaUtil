@@ -42,7 +42,7 @@ public class AvlTree {
      * Return maximum of lhs and rhs.
      */
     private static int max(int lhs, int rhs) {
-        return lhs > rhs ? lhs : rhs;
+        return Math.max(lhs, rhs);
     }
 
     /**
@@ -292,10 +292,12 @@ public class AvlTree {
         AvlNode left; // Left child
         AvlNode right; // Right child
         int height; // Height
+
         // Constructors
         AvlNode(Comparable theElement) {
             this(theElement, null, null);
         }
+
         AvlNode(Comparable theElement, AvlNode lt, AvlNode rt) {
             element = theElement;
             left = lt;

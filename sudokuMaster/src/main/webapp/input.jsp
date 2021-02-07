@@ -83,7 +83,8 @@
                 080006010500803000090040500402000000900010008000000905005060040000204001060900030
                 -->
                 <h4>&nbsp;</h4>
-                <h4>Please input matrix into below inputbox, "0" stand for empty cell. Click "Submit" for auto resolve.</h4>
+                <h4>Please input matrix into below inputbox, "0" stand for empty cell. Click "Submit" for auto
+                    resolve.</h4>
                 <input type="text" name="all"
                        value="010000052204000397070302014007060200000509100006020900080407520705000401040000730"
                        onblur="splitAll(this.value)" size=100 maxlength=81>

@@ -41,7 +41,7 @@ final class NumSpellerBR extends NumSpeller__ {
         NumSpeller__.contraccion3 = "ha hanter|hag hanter";
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         NumSpellerBR c = new NumSpellerBR();
         System.out.println(c.leer("123456789012"));
     }

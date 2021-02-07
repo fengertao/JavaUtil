@@ -8,9 +8,9 @@ package numspeller;
 
 /**
  * @author jf25468
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class TestNumSpeller {
 
@@ -84,8 +84,7 @@ public class TestNumSpeller {
         };
 
         NumSpeller__ sp = new NumSpellerFR();
-        for (int i = 0; i < numbers.length; i++) {
-            String number = numbers[i];
+        for (String number : numbers) {
             System.out.println(number + " represent as " + sp.leer(number));
 
         }

@@ -25,9 +25,9 @@ public class PickStone {
         Boolean[] successfulZone = new Boolean[TRY_STONES];
         for (int stoneLeft = 0; stoneLeft < TRY_STONES; stoneLeft++) {
             successfulZone[stoneLeft] = true;
-            for (int iChoice = 0; iChoice < choices.length; iChoice++) {
-                if ((stoneLeft - choices[iChoice]) >= 0) {
-                    if (successfulZone[stoneLeft - choices[iChoice]] == true) {
+            for (int choice : choices) {
+                if ((stoneLeft - choice) >= 0) {
+                    if (successfulZone[stoneLeft - choice]) {
                         successfulZone[stoneLeft] = false;
                         break;
                     }
@@ -52,7 +52,7 @@ public class PickStone {
      */
     public static int getLoopLength(Boolean[] successfulZone, int[] choices) {
         // We don't know how many leading steps to be skip, as least bigger than sum of steps * 5.
-        int stepsToSkip = Arrays.stream(choices).reduce((i, j) -> i + j).getAsInt() * 5;
+        int stepsToSkip = Arrays.stream(choices).reduce(Integer::sum).getAsInt() * 5;
 
         for (int testLoopLength = 1; testLoopLength <= TRY_STONES / 2; testLoopLength++) {
             boolean invalidLoop = false;

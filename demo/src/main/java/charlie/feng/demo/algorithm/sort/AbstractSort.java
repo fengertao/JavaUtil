@@ -6,6 +6,4 @@ public abstract class AbstractSort<T extends Comparable<T>> {
         return null;
     }
 
-    ;
-
 }

@@ -37,7 +37,7 @@ class NumSpellerUK extends NumSpeller__ {
         NumSpeller__.signo_menos = "minus";
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         NumSpellerUK c = new NumSpellerUK();
         System.out.println(c.leer("123456789012"));
     }

@@ -1,11 +1,7 @@
 package charlie.feng.testutil.watcher;
 
 import charlie.feng.testutil.annotation.AllowedOutput;
-import charlie.feng.testutil.base.WatchOutputBaseTest;
-import org.apache.log4j.spi.LoggerFactory;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestRule;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;

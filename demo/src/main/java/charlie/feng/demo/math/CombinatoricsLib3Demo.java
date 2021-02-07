@@ -55,7 +55,7 @@ public class CombinatoricsLib3Demo {
                 .flatMap(combination -> Generator.permutation(combination)
                         .simple()
                         .stream()
-                        )
+                )
                 .collect(Collectors.toList());
         logger.info(kPermutationResult.toString());
 

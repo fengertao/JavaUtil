@@ -7,8 +7,7 @@ public class Summing3 {
 
         long sum = 0;
         int size = ia.length;
-        for (int i = 0; i < size; i++)
-            sum += ia[i];
+        for (Long aLong : ia) sum += aLong;
         return sum;
     }
 
