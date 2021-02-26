@@ -1,8 +1,8 @@
-package charlie.feng.demo.math;
+package charlie.feng.demo.math.pickstone;
 
 import java.util.Arrays;
 
-public class PickStone {
+public class PickStoneMultiFixedChoice {
 
     public static final int TRY_STONES = 2000;
     public static final int NUMBER_CHOICE = 3;
