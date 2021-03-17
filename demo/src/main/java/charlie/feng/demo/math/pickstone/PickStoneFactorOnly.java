@@ -21,6 +21,10 @@ public class PickStoneFactorOnly extends AbstractPickStone2Pile {
         }
     }
 
+    public PickStoneFactorOnly() {
+        super(true);
+    }
+
     public static void main(String[] args) {
         new PickStoneFactorOnly().play();
     }

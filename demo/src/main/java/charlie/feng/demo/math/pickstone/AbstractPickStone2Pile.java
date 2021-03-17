@@ -12,13 +12,22 @@ import java.util.List;
 public abstract class AbstractPickStone2Pile {
 
     public static final int MAX_STONES = 60;
+    /*
+     * dp内 true表示后手必胜 (走完后进入本局面必胜)，false表示先手必胜
+     */
     final boolean[][] dp = new boolean[MAX_STONES + 1][MAX_STONES + 1];
 
+
+    /**
+     * 构造函数
+     * @param lastPickWin 如果取最后一手为胜，设lastPickWin为 true.如果取最后一手为负，设lastPickWin为 false.
+     */
+    public AbstractPickStone2Pile(boolean lastPickWin) {
+        dp[0][0] = lastPickWin;
+    }
+
     public void play() {
-        /*
-         * true表示后手必胜 (走完后进入本局面必胜)，false表示先手必胜
-         */
-        dp[0][0] = true;
+
         for (int i = 1; i <= MAX_STONES; i++) {
             for (int j = 0; j <= i; j++) {
                 dp[i][j] = isWinPosition(i, j);
