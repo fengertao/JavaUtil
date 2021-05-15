@@ -24,7 +24,11 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSort<T> {
         merge(begin, mid, end);
     }
 
+    interface Display {
+        public int show(String s1, String s2);
+    }
     private void merge(int begin, int mid, int end) {
+        Display display = String::indexOf;
         if (end == begin)
             return;
 

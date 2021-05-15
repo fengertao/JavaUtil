@@ -13,25 +13,29 @@ public class JsonDemo {
     }
 
     public static void parseString() {
-        String jsonString = "{ \"input\" : {\"inputKey1\" : \"inputValue1\"}, \"output\" : {outputKey1: \"outputValue1\"}, \"array1\" : [{\"eleKey1\" : \"eleValue1\"}]}";
+        String jsonString = """
+                { "input" : {"inputKey1" : "inputValue1"}, "output" : {outputKey1: "outputValue1"}, "array1" : [{"eleKey1" : "eleValue1"}]}""";
         JsonElement jelement = new JsonParser().parse(jsonString);
         JsonObject jobject = jelement.getAsJsonObject();
         JsonObject inputJobject = jobject.getAsJsonObject("input");
-        assert inputJobject.toString().equals("{\"inputKey1\":\"inputValue1\"}");
+        assert inputJobject.toString().equals("""
+                {"inputKey1":"inputValue1"}""");
         JsonObject outputobject = jobject.getAsJsonObject("output");
         // Notice that the outputKey1 is double quoted
-        assert outputobject.toString().equals("{\"outputKey1\":\"outputValue1\"}");
+        assert outputobject.toString().equals("""
+                {"outputKey1":"outputValue1"}""");
         JsonArray jarray = jobject.getAsJsonArray("array1");
         jobject = jarray.get(0).getAsJsonObject();
-        assert jobject.toString().equals("{\"eleKey1\":\"eleValue1\"}");
+        assert jobject.toString().equals("""
+                {"eleKey1":"eleValue1"}""");
 
         JsonObject newJsonObject = new JsonObject();
         newJsonObject.add("input", inputJobject);
         newJsonObject.add("output", outputobject);
         newJsonObject.add("array1", jarray);
         System.out.println(newJsonObject);
-        assert newJsonObject.toString().equals("{\"input\":{\"inputKey1\":\"inputValue1\"},\"output\":{\"outputKey1\":\"outputValue1\"},\"array1\":[{\"eleKey1\":\"eleValue1\"}]}");
-
+        assert newJsonObject.toString().equals("""
+               {"input":{"inputKey1":"inputValue1"},"output":{"outputKey1":"outputValue1"},"array1":[{"eleKey1":"eleValue1"}]}""");
     }
 
 }
