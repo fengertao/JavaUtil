@@ -1,6 +1,8 @@
 package charlie.feng.demo.math.pickstone;
 
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import java.util.List;
 
 /**
@@ -51,19 +53,10 @@ public abstract class AbstractPickStone2Pile {
     }
 
     public boolean isWinPosition(int i, int j) {
-        List<Integer> stones0 = getLegalStones(i, j, 0);
-        for (Integer num : stones0) {
-            if (i < num) continue;
-
-            if (dp[i - num][j]) {
-                return false;
-            }
-        }
-        List<Integer> stones1 = getLegalStones(i, j, 1);
-        for (Integer num : stones1) {
-            if (j < num) continue;
-
-            if (dp[i][j - num]) {
+        List<ImmutablePair<Integer, Integer>> legalStones = getLegalMoves(i, j);
+        for (ImmutablePair<Integer, Integer> pair : legalStones) {
+            if ((i < pair.left) || (j < pair.right)) continue;
+            if (dp[i - pair.left][j - pair.right]) {
                 return false;
             }
         }
@@ -72,7 +65,6 @@ public abstract class AbstractPickStone2Pile {
         return true;
     }
 
-
-    abstract List<Integer> getLegalStones(int i, int j, int pileIndex);
+    abstract List<ImmutablePair<Integer, Integer>> getLegalMoves(int i, int j);
 }
 
