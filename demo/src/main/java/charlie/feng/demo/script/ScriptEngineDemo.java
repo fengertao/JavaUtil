@@ -16,7 +16,7 @@ public class ScriptEngineDemo {
         scp.append("    return ");
         scp.append("IAcctLoginEvent_ActorIp==BeaconEventTriggerData_ActorIP;");
         scp.append("}");
-        System.out.println(scp.toString());
+        System.out.println(scp);
         engine.eval(scp.toString());
         //Object[] params={127L,127L}; return true in both 1.7 and 1.8
         //Object[] params={128l,128l}; return false in 1.8

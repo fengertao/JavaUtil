@@ -32,7 +32,7 @@ public class FindMultiThread {
             for (Path path : stream) {
                 String filename = path.getFileName().toString();
                 if (filename.contains("sys")) {
-                    System.out.println(path.toAbsolutePath().toString());
+                    System.out.println(path.toAbsolutePath());
                 }
                 if (Files.isDirectory(path)) {
                     doFind(path);

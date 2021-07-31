@@ -15,7 +15,7 @@ public class ParallelStreamPuzzle {
     }
 
     public static void main(String[] args) {
-        List<Integer> x = Stream.generate(new IntGenerator()).limit(1000).parallel().collect(Collectors.toList());
+        List<Integer> x = Stream.generate(new IntGenerator()).limit(1000).parallel().toList();
         System.out.println(x);
     }
 }

@@ -26,7 +26,7 @@ public class ParallelStreamPuzzle2 {
     }
 
     public static void main(String[] args) throws Exception {
-        List<Integer> x = Stream.generate(new IntGenerator()).limit(10).parallel().collect(Collectors.toList());
+        List<Integer> x = Stream.generate(new IntGenerator()).limit(10).parallel().toList();
         System.out.println(x);
         Files.write(Paths.get("PSP2.txt"), trace);
 //        Files.write(Paths.get("PSP2trace2.txt"), trace2.get().getBytes());

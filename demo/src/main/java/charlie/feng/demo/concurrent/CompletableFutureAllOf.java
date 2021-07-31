@@ -63,13 +63,13 @@ public class CompletableFutureAllOf {
                     .map(car -> rating(car.manufacturerId).thenApply(rating -> {
                         car.setRating(rating);
                         return car;
-                    })).collect(Collectors.toList());
+                    })).toList();
 
             return CompletableFuture
                     .allOf(updatedCars.toArray(new CompletableFuture[0]))
                     .thenApply(v -> updatedCars.stream()
                             .map(CompletableFuture::join)
-                            .collect(Collectors.toList()));
+                            .toList());
         }).whenComplete((cars, th) -> {
             if (th == null) {
                 cars.forEach(System.out::println);

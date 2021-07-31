@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
  */
 public class Continues2 {
     public static void main(String[] args) {
-        long result = Generator.combination(IntStream.range(1, 44).boxed().collect(Collectors.toList())).simple(4).stream().filter(Continues2::containsContinues).count();
+        long result = Generator.combination(IntStream.range(1, 44).boxed().toList()).simple(4).stream().filter(Continues2::containsContinues).count();
         System.out.println(result);
     }
 

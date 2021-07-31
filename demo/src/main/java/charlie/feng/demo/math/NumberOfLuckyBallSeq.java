@@ -25,7 +25,7 @@ public class NumberOfLuckyBallSeq {
                 .simple()
                 .stream()
                 .filter(NumberOfLuckyBallSeq::isLuckSeq)
-                .collect(Collectors.toList());
+                .toList();
         System.out.println(result.size());
     }
 

@@ -13,8 +13,8 @@
     <name>Test Utils</name>
 
     <properties>
-        <junit.version>4.12</junit.version>
-        <slf4j-log4j12.version>1.5.8</slf4j-log4j12.version>
+        <junit.version>4.13.2</junit.version>
+        <slf4j-log4j12.version>1.7.32</slf4j-log4j12.version>
     </properties>
 
     <dependencies>
@@ -31,17 +31,17 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.9.1</version>
+            <version>3.141.59</version>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>1.2.5</version>
+            <version>1.2.6</version>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-core</artifactId>
-            <version>1.2.5</version>
+            <version>1.2.6</version>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
@@ -52,7 +52,7 @@
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>1.2.5</version>
+            <version>1.2.6</version>
             <scope>test</scope>
         </dependency>
         <dependency>

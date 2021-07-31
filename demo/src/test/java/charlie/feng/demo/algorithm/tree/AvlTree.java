@@ -18,11 +18,11 @@ package charlie.feng.demo.algorithm.tree;
  * Implements an AVL tree. Note that all "matching" is based on the compareTo
  * method.
  */
-public class AvlTree {
+public class AvlTree<T extends Comparable<T>> {
     /**
      * The tree root.
      */
-    private AvlNode root;
+    private AvlNode<T> root;
 
     /**
      * Construct the tree.
@@ -34,7 +34,7 @@ public class AvlTree {
     /**
      * Return the height of node t, or -1, if null.
      */
-    private static int height(AvlNode t) {
+    private static <T extends Comparable<T>> int height(AvlNode<T> t) {
         return t == null ? -1 : t.height;
     }
 
@@ -49,8 +49,8 @@ public class AvlTree {
      * Rotate binary tree node with left child. For AVL trees, this is a single
      * rotation for case 1. Update heights, then return new root.
      */
-    private static AvlNode rotateWithLeftChild(AvlNode k2) {
-        AvlNode k1 = k2.left;
+    private static <T extends Comparable<T>> AvlNode<T> rotateWithLeftChild(AvlNode<T> k2) {
+        AvlNode<T> k1 = k2.left;
         k2.left = k1.right;
         k1.right = k2;
         k2.height = max(height(k2.left), height(k2.right)) + 1;
@@ -62,8 +62,8 @@ public class AvlTree {
      * Rotate binary tree node with right child. For AVL trees, this is a single
      * rotation for case 4. Update heights, then return new root.
      */
-    private static AvlNode rotateWithRightChild(AvlNode k1) {
-        AvlNode k2 = k1.right;
+    private static <T extends Comparable<T>> AvlNode<T> rotateWithRightChild(AvlNode<T> k1) {
+        AvlNode<T> k2 = k1.right;
         k1.right = k2.left;
         k2.left = k1;
         k1.height = max(height(k1.left), height(k1.right)) + 1;
@@ -76,7 +76,7 @@ public class AvlTree {
      * then node k3 with new left child. For AVL trees, this is a double
      * rotation for case 2. Update heights, then return new root.
      */
-    private static AvlNode doubleWithLeftChild(AvlNode k3) {
+    private static <T extends Comparable<T>>  AvlNode<T> doubleWithLeftChild(AvlNode<T> k3) {
         k3.left = rotateWithRightChild(k3.left);
         return rotateWithLeftChild(k3);
     }
@@ -86,14 +86,14 @@ public class AvlTree {
      * then node k1 with new right child. For AVL tCompletableFuturerees, this is a double
      * rotation for case 3. Update heights, then return new root.
      */
-    private static AvlNode doubleWithRightChild(AvlNode k1) {
+    private static <T extends Comparable<T>> AvlNode<T> doubleWithRightChild(AvlNode<T> k1) {
         k1.right = rotateWithLeftChild(k1.right);
         return rotateWithRightChild(k1);
     }
 
     // Test program
     public static void main(String[] args) {
-        AvlTree t = new AvlTree();
+        AvlTree<Integer> t = new AvlTree<>();
         final int NUMS = 4000;
         final int GAP = 37;
 
@@ -117,7 +117,7 @@ public class AvlTree {
      *
      * @param x the item to insert.
      */
-    public void insert(Comparable x) {
+    public void insert(T x) {
         root = insert(x, root);
     }
 
@@ -126,7 +126,7 @@ public class AvlTree {
      *
      * @param x the item to remove.
      */
-    public void remove(Comparable x) {
+    public void remove(T x) {
         System.out.println("Sorry, remove unimplemented");
     }
 
@@ -135,7 +135,7 @@ public class AvlTree {
      *
      * @return smallest item or null if empty.
      */
-    public Comparable findMin() {
+    public Comparable<T> findMin() {
         return elementAt(findMin(root));
     }
 
@@ -144,7 +144,7 @@ public class AvlTree {
      *
      * @return the largest item of null if empty.
      */
-    public Comparable findMax() {
+    public Comparable<T> findMax() {
         return elementAt(findMax(root));
     }
 
@@ -154,7 +154,7 @@ public class AvlTree {
      * @param x the item to search for.
      * @return the matching item or null if not found.
      */
-    public Comparable find(Comparable x) {
+    public Comparable<T> find(Comparable<T> x) {
         return elementAt(find(x, root));
     }
 
@@ -190,7 +190,7 @@ public class AvlTree {
      * @param t the node.
      * @return the element field or null if t is null.
      */
-    private Comparable elementAt(AvlNode t) {
+    private Comparable<T> elementAt(AvlNode<T> t) {
         return t == null ? null : t.element;
     }
 
@@ -201,9 +201,9 @@ public class AvlTree {
      * @param t the node that roots the tree.
      * @return the new root.
      */
-    private AvlNode insert(Comparable x, AvlNode t) {
+    private AvlNode<T> insert(T x, AvlNode<T> t) {
         if (t == null)
-            t = new AvlNode(x, null, null);
+            t = new AvlNode<>(x, null, null);
         else if (x.compareTo(t.element) < 0) {
             t.left = insert(x, t.left);
             if (height(t.left) - height(t.right) == 2)
@@ -218,8 +218,9 @@ public class AvlTree {
                     t = rotateWithRightChild(t);
                 else
                     t = doubleWithRightChild(t);
-        } else
-            ; // Duplicate; do nothing
+        }
+        // Duplicate; do nothing
+
         t.height = max(height(t.left), height(t.right)) + 1;
         return t;
     }
@@ -230,9 +231,9 @@ public class AvlTree {
      * @param t the node that roots the tree.
      * @return node containing the smallest item.
      */
-    private AvlNode findMin(AvlNode t) {
+    private AvlNode<T> findMin(AvlNode<T> t) {
         if (t == null)
-            return t;
+            return null;
 
         while (t.left != null)
             t = t.left;
@@ -245,9 +246,9 @@ public class AvlTree {
      * @param t the node that roots the tree.
      * @return node containing the largest item.
      */
-    private AvlNode findMax(AvlNode t) {
+    private AvlNode<T> findMax(AvlNode<T> t) {
         if (t == null)
-            return t;
+            return null;
 
         while (t.right != null)
             t = t.right;
@@ -261,7 +262,7 @@ public class AvlTree {
      * @param t the node that roots the tree.
      * @return node containing the matched item.
      */
-    private AvlNode find(Comparable x, AvlNode t) {
+    private AvlNode<T> find(Comparable<T> x, AvlNode<T> t) {
         while (t != null)
             if (x.compareTo(t.element) < 0)
                 t = t.left;
@@ -278,32 +279,11 @@ public class AvlTree {
      *
      * @param t the node that roots the tree.
      */
-    private void printTree(AvlNode t) {
+    private void printTree(AvlNode<T> t) {
         if (t != null) {
             printTree(t.left);
             System.out.println(t.element);
             printTree(t.right);
         }
     }
-
-    class AvlNode {
-        // Friendly data; accessible by other package routines
-        Comparable element; // The data in the node
-        AvlNode left; // Left child
-        AvlNode right; // Right child
-        int height; // Height
-
-        // Constructors
-        AvlNode(Comparable theElement) {
-            this(theElement, null, null);
-        }
-
-        AvlNode(Comparable theElement, AvlNode lt, AvlNode rt) {
-            element = theElement;
-            left = lt;
-            right = rt;
-            height = 0;
-        }
-    }
-
 }

@@ -46,30 +46,25 @@ public class DirectoryListDemo {
                 assert !filenameList.contains("My Documents");
             }
             try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "{M,A}*")) {
-                List<String> filenameList = new ArrayList<>();
-                for (Path file : stream) {
-                    filenameList.add(file.getFileName().toString());
-                }
-                assert !filenameList.contains(".bashrc");
-                assert filenameList.contains("AppData");
-                assert filenameList.contains("Music");
-                assert filenameList.contains("My Documents");
+                assertContainsContents(stream);
             }
 
             DirectoryStream.Filter<Path> dirFilter = file -> (Files.isDirectory(file));
             try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, dirFilter)) {
-                List<String> filenameList = new ArrayList<>();
-                for (Path file : stream) {
-                    filenameList.add(file.getFileName().toString());
-                }
-                assert !filenameList.contains(".bashrc");
-                assert filenameList.contains("AppData");
-                assert filenameList.contains("Music");
-                assert filenameList.contains("My Documents");
+                assertContainsContents(stream);
             }
-
-
         }
 
+    }
+
+    private static void assertContainsContents(DirectoryStream<Path> stream) {
+        List<String> filenameList = new ArrayList<>();
+        for (Path file : stream) {
+            filenameList.add(file.getFileName().toString());
+        }
+        assert !filenameList.contains(".bashrc");
+        assert filenameList.contains("AppData");
+        assert filenameList.contains("Music");
+        assert filenameList.contains("My Documents");
     }
 }

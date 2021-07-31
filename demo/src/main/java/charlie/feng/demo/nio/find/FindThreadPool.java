@@ -55,7 +55,7 @@ class FindRunable implements Runnable {
             for (Path path : Files.newDirectoryStream(currentPath)) {
                 String filename = path.getFileName().toString();
                 if (filename.contains("sys")) {
-                    System.out.println(path.toAbsolutePath().toString());
+                    System.out.println(path.toAbsolutePath());
                 }
                 if (Files.isDirectory(path)) {
                     FindRunable findRunable = new FindRunable(path);

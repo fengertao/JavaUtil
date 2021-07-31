@@ -56,7 +56,7 @@ public class CombinatoricsLib3Demo {
                         .simple()
                         .stream()
                 )
-                .collect(Collectors.toList());
+                .toList();
         logger.info(kPermutationResult.toString());
 
         logger.info("四选二排列,原始输入无重复，应该输出P(4,2)=12个结果");

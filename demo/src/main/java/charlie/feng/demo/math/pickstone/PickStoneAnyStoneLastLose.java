@@ -19,8 +19,8 @@ public class PickStoneAnyStoneLastLose extends AbstractPickStone2Pile{
     @Override
     List<ImmutablePair<Integer, Integer>> getLegalMoves(int i, int j) {
         List<ImmutablePair<Integer, Integer>> moves = new ArrayList<>();
-        IntStream.rangeClosed(1,i).forEach(n -> moves.add(ImmutablePair.of(n, 0)));
         IntStream.rangeClosed(1,j).forEach(n -> moves.add(ImmutablePair.of(0, n)));
+        IntStream.rangeClosed(1,i).forEach(n -> moves.add(ImmutablePair.of(n, 0)));
         return moves;
     }
 

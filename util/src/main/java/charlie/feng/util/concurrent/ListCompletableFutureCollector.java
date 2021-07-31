@@ -31,10 +31,9 @@ public class ListCompletableFutureCollector {
 
     private static <X, T extends CompletableFuture<X>> Function<List<T>, CompletableFuture<List<X>>> joinResult() {
         return ls -> allOf(ls)
-                .thenApply(v -> ls
-                .stream()
-                .map(CompletableFuture::join)
-                .collect(Collectors.toList()));
+                .thenApply(v -> ls.stream()
+                        .map(CompletableFuture::join)
+                        .toList());
     }
 
     private static <T extends CompletableFuture<?>> CompletableFuture<Void> allOf(List<T> ls) {
@@ -54,7 +53,7 @@ public class ListCompletableFutureCollector {
         return CompletableFuture.allOf(cfList.toArray(new CompletableFuture[0]))
                 .thenApply(v -> cfList.stream()
                         .map(CompletableFuture::join)
-                        .collect(Collectors.toList())
+                        .toList()
                 );
     }
 

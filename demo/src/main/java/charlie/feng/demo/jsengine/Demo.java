@@ -31,7 +31,7 @@ public class Demo {
 
         Object obj = inv.invokeFunction("max", "1", "0");
         if ("1".equals(obj.toString())) {
-            System.out.println(obj.toString());
+            System.out.println(obj);
         } else {
             throw new Exception("asset failure");
         }

@@ -25,7 +25,7 @@ public class PickStone3PileAnyStoneLastLose extends AbstractPickStone3Pile {
             case 2 -> k;
             default -> 0;
         };
-        return IntStream.rangeClosed(1, max).boxed().collect(Collectors.toList());
+        return IntStream.rangeClosed(1, max).boxed().toList();
 
     }
 }

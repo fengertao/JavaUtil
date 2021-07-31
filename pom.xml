@@ -12,7 +12,7 @@
         <revision>0.0.1-SNAPSHOT</revision>
         <spring.version>5.3.3</spring.version>
         <junit.version>5.7.1</junit.version>
-        <logback.version>1.2.3</logback.version>
+        <logback.version>1.2.5</logback.version>
 
         <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
         <tomcat-maven-plugin>1.1</tomcat-maven-plugin>
@@ -135,7 +135,7 @@
             <dependency>
                 <groupId>com.github.dpaukov</groupId>
                 <artifactId>combinatoricslib3</artifactId>
-                <version>3.3.0</version>
+                <version>3.3.2</version>
             </dependency>
             <!-- test scope -->
             <dependency>
