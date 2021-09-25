@@ -16,7 +16,7 @@
 
         <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
         <tomcat-maven-plugin>1.1</tomcat-maven-plugin>
-        <java.version>16</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
