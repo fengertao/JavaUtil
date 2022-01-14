@@ -1,7 +1,9 @@
 package charlie.feng.demo.math.nimber;
 
 import charlie.feng.demo.math.MathUtil;
+import charlie.feng.util.edge.DateUtil;
 
+import java.util.Calendar;
 import java.util.Set;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Set;
  */
 public abstract class AbstractPickStone {
 
-    public static final int MAX_STONES = 10000;
+    public static final int MAX_STONES = 1000000;
     /*
      * 数组里的值为nimber，值为0时表示P position (previous player win).
      *
@@ -27,13 +29,23 @@ public abstract class AbstractPickStone {
         if (this instanceof IPlayHookable) {
             ((IPlayHookable) this).onPrePlay();
         }
+        long startTime = System.currentTimeMillis();
+        System.out.println("Started at: " + startTime);
+
         for (int i = 1; i <= MAX_STONES; i++) {
             nim[i] = calculateNim(i);
+            if (i % 10000 == 0) {
+                System.out.println("SG calculated: " + i + " . Time costed(ms): " + (System.currentTimeMillis() - startTime) );
+            }
+
         }
         if (this instanceof IPlayHookable) {
             ((IPlayHookable) this).onPostPlay();
         }
-        printNim();
+
+        System.out.print("executed:" + MAX_STONES);
+
+//        printNim();
     }
 
     private void printNim() {
