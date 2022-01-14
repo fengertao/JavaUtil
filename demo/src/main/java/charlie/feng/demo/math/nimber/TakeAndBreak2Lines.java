@@ -1,7 +1,7 @@
 package charlie.feng.demo.math.nimber;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 2xn的连续方格，每次可以涂黑1x1或者2x2，问1000内的先手输的n是哪些
@@ -32,23 +32,22 @@ public class TakeAndBreak2Lines extends AbstractTakeAndBreak implements IPlayHoo
 
     @Override
     public void onPostPlay() {
-
     }
 
     @Override
-    public List<List<Integer>> getLegalReminders(int n) {
-        List<List<Integer>> stacks = new ArrayList<>();
+    public Set<Integer> getCandidateNimbers(int n) {
+        Set<Integer> stacks = new HashSet<>();
         if (n == 1) {
-            stacks.add(List.of(maxStones + 1));
+            stacks.add(1);
         } else if (n == 2) {
-            stacks.add(List.of(1, maxStones + 1));
-            stacks.add(List.of(0));
+            stacks.add(nim[1] ^ 1);
+            stacks.add(0);
         } else {
-            stacks.add(List.of(n - 1, maxStones + 1));
-            stacks.add(List.of(n - 2));
+            stacks.add(nim[n - 1] ^ 1);
+            stacks.add(nim[n - 2]);
             for (int i = 1; i <= n / 2; i++) {
-                stacks.add(List.of(i, n - 1 - i, maxStones + 1));
-                stacks.add(List.of(i, n - 2 - i));
+                stacks.add(nim[i] ^ nim[n - 1 - i] ^ 1);
+                stacks.add(nim[i] ^ nim[n - 2 - i]);
             }
         }
         return stacks;

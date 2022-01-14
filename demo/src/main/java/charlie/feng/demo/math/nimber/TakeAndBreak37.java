@@ -1,8 +1,7 @@
 package charlie.feng.demo.math.nimber;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TakeAndBreak37 extends AbstractTakeAndBreak {
 
@@ -11,19 +10,19 @@ public class TakeAndBreak37 extends AbstractTakeAndBreak {
     }
 
     @Override
-    public List<List<Integer>> getLegalReminders(int n) {
-        List<List<Integer>> stacks = new ArrayList<>();
+    public Set<Integer> getCandidateNimbers(int n) {
+        Set<Integer> stacks = new HashSet<>();
         if (n == 1) {
-            stacks.add(Collections.singletonList(0));
+            stacks.add(nim[0]);
         } else if (n == 2) {
-            stacks.add(Collections.singletonList(0));
-            stacks.add(Collections.singletonList(1));
+            stacks.add(nim[0]);
+            stacks.add(nim[1]);
         } else {
-            stacks.add(Collections.singletonList(n - 1));
-            stacks.add(Collections.singletonList(n - 2));
+            stacks.add(nim[n - 1]);
+            stacks.add(nim[n - 2]);
             for (int i = 1; i <= n / 2; i++) {
-                stacks.add(List.of(i, n - 1 - i));
-                stacks.add(List.of(i, n - 2 - i));
+                stacks.add(nim[i] ^ nim[n - 1 - i]);
+                stacks.add(nim[i] ^ nim[n - 2 - i]);
             }
         }
         return stacks;

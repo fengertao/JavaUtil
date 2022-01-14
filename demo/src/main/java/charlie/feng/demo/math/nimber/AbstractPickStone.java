@@ -22,9 +22,10 @@ public abstract class AbstractPickStone {
      * 数组1-max stone下标表示还剩1到n个石子时的nimber
      * 数组max stone以上下标，给特殊规则的游戏备用。游戏应该注释该用途。
      */
-    public final int[] nim = new int[maxStones * 2];
+    public int[] nim;
 
     public void play() {
+        nim = new int[maxStones * 2];
         nim[0] = 0;
         if (this instanceof IPlayHookable) {
             ((IPlayHookable) this).onPrePlay();
@@ -39,8 +40,8 @@ public abstract class AbstractPickStone {
     }
 
     protected void printNim() {
-        System.out.println(IntStream.range(0, maxStones+1).mapToObj(i -> i%10).reduce("", (str, c) -> str + c , (a, b) -> a+b));
-        System.out.println(Arrays.stream(nim).limit(maxStones+1).mapToObj(i ->  MathUtil.toBase36(i)).reduce("", (str, c) -> str + c , (a, b) -> a+b));
+        System.out.println(IntStream.range(0, maxStones + 1).mapToObj(i -> i % 10).reduce("", (str, c) -> str + c, (a, b) -> a + b));
+        System.out.println(Arrays.stream(nim).limit(maxStones + 1).mapToObj(i -> MathUtil.toBase36(i)).reduce("", (str, c) -> str + c, (a, b) -> a + b));
     }
 
     public int mex(Set<Integer> candidateNims) {
