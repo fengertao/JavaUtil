@@ -10,9 +10,9 @@
 
     <properties>
         <revision>0.0.1-SNAPSHOT</revision>
-        <spring.version>5.3.3</spring.version>
+        <spring.version>5.3.19</spring.version>
         <junit.version>5.7.1</junit.version>
-        <logback.version>1.2.5</logback.version>
+        <logback.version>1.2.11</logback.version>
 
         <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
         <tomcat-maven-plugin>1.1</tomcat-maven-plugin>
